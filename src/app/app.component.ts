@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ActivitiesService } from './activities/services/activities.service';
+import { NewsService } from './news/services/news.service';
+import { NewsModel } from './news/models/news.model';
 
 @Component({
   selector: 'app-root',
@@ -15,19 +17,12 @@ export class AppComponent {
 
   testRes: string[] = [];
 
-  constructor(private activitySvc: ActivitiesService){
+  constructor(
+    private activitySvc: ActivitiesService,
+    private newsSvc: NewsService){
 
   }
 
-  test(): string[] {
-
-    this.activitySvc.GetSqlTest().subscribe({
-      next: (res: string[]) => {
-        debugger;
-        this.testRes.push(...res);
-      }
-    })
-    return this.testRes;
-  }
+  test(): void{}
 
 }

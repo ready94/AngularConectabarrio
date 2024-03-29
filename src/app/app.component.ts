@@ -5,13 +5,14 @@ import { ActivitiesService } from './activities/services/activities.service';
 import { HomeComponent } from "./home/pages/home/home.component";
 import { NewsService } from './news/services/news.service';
 import { NewsModel } from './news/models/news.model';
+import { MainNavbarComponent } from "./shared/components/main-navbar/main-navbar.component";
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    imports: [CommonModule, RouterOutlet, HomeComponent]
+    imports: [CommonModule, RouterOutlet, HomeComponent, MainNavbarComponent]
 })
 export class AppComponent {
   title = 'ConectaBarrio';

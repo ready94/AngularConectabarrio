@@ -170,7 +170,7 @@
   }
 </style>
 
-<app-main-navbar></app-main-navbar>
+
 <main class="main h-100">
   <!--<div class="content">
     <div class="left-side">
@@ -317,7 +317,9 @@
     </div>
   </div>
   <button (click)="test()">CLICK ME!</button>-->
-  <app-home></app-home>
+  <app-home>
+    <app-main-navbar></app-main-navbar>
+  </app-home>
 </main>
 
 <router-outlet></router-outlet>

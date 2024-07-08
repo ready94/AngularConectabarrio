@@ -2,9 +2,11 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "resolveJsonModule": true,
+    "strict": false,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -22,7 +24,20 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@shared/*": ["src/app/shared/*"],
+      "@login/*": ["src/app/login/*"],
+      "@news/*": ["src/app/news/*"],
+      "@home/*": ["src/app/home/*"],
+      "@complaints/*": ["src/app/complaints/*"],
+      "@calendar/*": ["src/app/calendar/*"],
+      "@alerts/*": ["src/app/alerts/*"],
+      "@advertisements/*": ["src/app/advertisements/*"],
+      "@activities/*": ["src/app/activities/*"],
+      "@assets/*": ["src/assets/i18n/*"],
+      "@images/*": ["src/assets/images/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

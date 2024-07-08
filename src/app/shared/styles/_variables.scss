@@ -1,0 +1,177 @@
+/// @group Z-SASS-Configuration
+$include-flex: false;
+/// @group Z-SASS-Configuration
+$include-tables: true;
+/// @group Z-SASS-Configuration
+$include-trees: true;
+/// @group Z-SASS-Colors-theme
+$color-theme: var(--color-theme);
+/// @group Z-SASS-Colors-theme
+$color-theme-hover: var(--color-theme-hover);
+/// @group Z-SASS-Colors-theme
+$color-theme-opposite: var(--color-theme-opposite);
+/// @group Z-SASS-Colors-theme
+$color-theme-opposite-hover: var(--color-theme-opposite-hover);
+/// @group Z-SASS-Colors-theme
+$color-theme2: var(--color-theme2);
+$color-theme2-hover: var(--color-theme2-hover);
+/// @group Z-SASS-Colors-theme
+$color-theme2-opposite: var(--color-theme2-opposite);
+/// @group Z-SASS-Colors-theme
+$color-theme2-opposite-hover: var(--color-theme2-opposite-hover);
+
+/// @group Z-SASS-Colors-theme
+$color-theme-adm: var(--color-theme-adm);
+/// @group Z-SASS-Colors-theme
+$color-theme-hover-adm: var(--color-theme-hover-adm);
+/// @group Z-SASS-Colors-theme
+$color-theme-opposite-adm: var(--color-theme-opposite-adm);
+/// @group Z-SASS-Colors-theme
+$color-theme-opposite-hover-adm: var(--color-theme-opposite-hover-adm);
+
+/// @group Z-SASS-Colors-theme
+$color-theme-mnt: var(--color-theme-mnt);
+/// @group Z-SASS-Colors-theme
+$color-theme-hover-mnt: var(--color-theme-hover-mnt);
+/// @group Z-SASS-Colors-theme
+$color-theme-opposite-mnt: var(--color-theme-opposite-mnt);
+/// @group Z-SASS-Colors-theme
+$color-theme-opposite-hover-mnt: var(--color-theme-opposite-hover-mnt);
+
+/// @group Z-SASS-Colors
+$grey-darkest: #444;
+/// @group Z-SASS-Colors
+$grey-dark: #666;
+/// @group Z-SASS-Colors
+$grey-medium: #888;
+/// @group Z-SASS-Colors
+$grey-light: #ccc;
+/// @group Z-SASS-Colors
+$grey-lightest: #eee;
+/// @group Z-SASS-Colors
+$grey-blue: #6b7183;
+/// @group Z-SASS-Colors
+$grey-blue-transparent: #8fabd542;
+/// @group Z-SASS-Colors
+$color-body: $grey-lightest;
+/// @group Z-SASS-Colors
+$color-font: $grey-darkest;
+/// @group Z-SASS-Colors
+$success: #28a745;
+/// @group Z-SASS-Colors
+$warning: #ffc107;
+/// @group Z-SASS-Colors
+$danger: #dc3545;
+/// @group Z-SASS-Colors
+$blue: #1ea2da;
+/// @group Z-SASS-Colors
+$color-vref-equal: $success;
+/// @group Z-SASS-Colors
+$color-vref-lower: $grey-medium;
+/// @group Z-SASS-Colors
+$color-vref-greater: $blue;
+/// @group Z-SASS-Colors
+$color-vref-general: #003d6a;
+/// @group Z-SASS-Colors
+$color-vref-deleted: $danger;
+/// @group Z-SASS-Colors
+$color-vref-partial: $warning;
+
+/// @group Z-SASS-Typography
+$fs-xs: 0.8rem;
+/// @group Z-SASS-Typography
+$fs-sm: 0.9rem;
+/// @group Z-SASS-Typography
+$fs-normal: 1rem;
+/// @group Z-SASS-Typography
+$fs-lg: 1.5rem;
+/// @group Z-SASS-Typography
+$fs-xl: 2rem;
+
+/// @group Z-SASS-Breakpoints
+$small-device: 576px;
+/// @group Z-SASS-Breakpoints
+$medium-device: 768px;
+/// @group Z-SASS-Breakpoints
+$large-device: 992px;
+/// @group Z-SASS-Breakpoints
+$xlarge-device: 1200px;
+/// @group Z-SASS-Breakpoints
+$map-breakpoint-props: (
+  "": 0,
+  "-sm": $small-device,
+  "-md": $medium-device,
+  "-lg": $large-device,
+  "-xl": $xlarge-device,
+);
+
+/// @group Z-SASS-Flexbox
+$flex__cols: 12;
+/// @group Z-SASS-Flexbox
+$flex-justified-mspolyfill-map: (
+  "flex-start": start,
+  "center": center,
+  "flex-end": end,
+  "space-around": "around",
+  "space-between": justify,
+);
+/// @group Z-SASS-Flexbox
+$flex-align-mspolyfill-map: (
+  "flex-start": start,
+  "center": center,
+  "flex-end": end,
+  "baseline": baseline,
+);
+
+/// @group Z-SASS-Margin/Padding
+$mp-0: 0rem;
+/// @group Z-SASS-Margin/Padding
+$mp-1: .25rem;
+/// @group Z-SASS-Margin/Padding
+$mp-2: -5rem;
+/// @group Z-SASS-Margin/Padding
+$mp-3: 1rem;
+/// @group Z-SASS-Margin/Padding
+$mp-4: 1.5rem;
+/// @group Z-SASS-Margin/Padding
+$mp-5: 3rem;
+
+/// @group Z-SASS-Header
+$header-height: 40px;
+/// @group Z-SASS-Header
+$header-color-bg: white;
+/// @group Z-SASS-Header
+$header-color-txt: $color-theme;
+
+/// @group Z-SASS-Footer
+$footer-height: 0px;
+/// @group Z-SASS-Footer
+$footer-color-bg: $color-theme;
+/// @group Z-SASS-Footer
+$footer-color-txt: $color-theme-opposite;
+
+
+/// @group Z-SASS-Main
+$main-height: calc(100vh - #{$header-height} - #{$footer-height});
+/// @group Z-SASS-Main
+$main-collapsible-panel-height: calc(#{$main-height} - 2*#{$mp-1});
+/// @group Z-SASS-Main
+$total-height: calc(100vh);
+/// @group Z-SASS-Main
+$cat-main-height: calc(75vh - #{$header-height});
+/// @group Z-SASS-Main
+$cat-bottom-height: max(calc(25vh - #{$footer-height}), 150px);
+/// @group Z-SASS-Main
+$cat-main-collapsible-panel-height: calc(#{$cat-main-height} - 2*#{$mp-1});
+/// @group Z-SASS-Main
+$sidebar-width: 40px;
+/// @group Z-SASS-Main
+$expansion-panel-header-height: 30px;
+/// @group Z-SASS-Main
+$panel-collapsed-height: calc(#{$expansion-panel-header-height} + 2*#{$mp-1});
+/// @group Z-SASS-Main
+$table-info-height: calc(70px + #{$mp-1});
+/// @group Z-SASS-Main
+$tab-height: 49px;
+
+$title-panel-height: calc(24px + 2*#{$mp-1});

@@ -1,4 +1,9 @@
-<div class="mx-5">
-    <p>ConectaBarrio</p>
-    <button class="m-2 pt-2">Login</button>
+<div class="nav-bar-sticky">
+    <img src="../../../../assets/images/BannerConectaBarrio2.png">
+    <span *ngIf="isLogged" class="user"> {{loggedUser}} </span>
+    <div *ngIf="!isLogged" class="float-end py-1">
+        <button mat-raised-button class="btn-theme" (click)="login()">Acceder</button>
+        <button mat-raised-button class="btn-theme mx-2" (click)="register()">Registro</button>
+    </div>
+    <button *ngIf="isLogged" mat-raised-button class="btn-theme mx-2" (click)="logOut()">Salir</button>
 </div> 

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserModel } from '../models/user.mode';
+import { NewUserModel } from '@login/models/new-user.model';
+import { ResponseResult } from '../../shared/models/response-result.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,26 +15,22 @@ export class UserService {
 
   constructor(private router: Router, private httpClient: HttpClient) {}
 
-  CreateUser(idUser: number, user: UserModel): Observable<boolean> {
-    debugger;
-    const url = this.url + `/createUser/${idUser}`;
-    return this.httpClient.post<boolean>(url, user);
+  CreateUser(user: NewUserModel): Observable<ResponseResult<boolean>> {
+    const url = this.url + `/createUser`;
+    return this.httpClient.post<ResponseResult<boolean>>(url, user);
   }
 
   UpdateUser(idUser: number, user: UserModel): Observable<boolean> {
-    debugger;
     const url = this.url + `/updateUser/${idUser}`;
     return this.httpClient.post<boolean>(url, user);
   }
 
   DeleteUser(idUser: number): Observable<boolean> {
-    debugger;
     const url = this.url + `/deleteUser/}`;
     return this.httpClient.post<boolean>(url, idUser);
   }
 
   GetUserData(idUser: number): Observable<UserModel> {
-    debugger;
     const url = this.url + `/getUser/${idUser}`;
     return this.httpClient.get<UserModel>(url);
   }

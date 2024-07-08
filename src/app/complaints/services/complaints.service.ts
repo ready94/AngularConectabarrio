@@ -14,25 +14,21 @@ export class ComplaintsService {
   constructor(private router: Router, private httpClient: HttpClient) {}
 
   CreateComplaint(idUser: number, complaint: ComplaintModel): Observable<boolean> {
-    debugger;
     const url = this.url + `/createComplaint/${idUser}`;
     return this.httpClient.post<boolean>(url, complaint);
   }
 
   UpdateComplaint(idUser: number, complaint: ComplaintModel): Observable<boolean> {
-    debugger;
     const url = this.url + `/updateComplaint/${idUser}`;
     return this.httpClient.post<boolean>(url, complaint);
   }
 
   DeleteComplaint(idUser: number, idComplaint: number): Observable<boolean> {
-    debugger;
     const url = this.url + `/deleteComplaint/${idUser}`;
     return this.httpClient.post<boolean>(url, idComplaint);
   }
 
   GetComplaintData(idComplaint: number): Observable<ComplaintModel> {
-    debugger;
     const url = this.url + `/getComplaint/${idComplaint}`;
     return this.httpClient.get<ComplaintModel>(url);
   }

@@ -1,30 +1,34 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import { ActivitiesService } from './activities/services/activities.service';
-import { HomeComponent } from "./home/pages/home/home.component";
-import { NewsService } from './news/services/news.service';
-import { NewsModel } from './news/models/news.model';
-import { MainNavbarComponent } from "./shared/components/main-navbar/main-navbar.component";
+import { Component, OnInit } from '@angular/core';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer, Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { MainConfigurationService } from '@shared/services/main-configuration.service';
 
 @Component({
     selector: 'app-root',
-    standalone: true,
+    standalone: false,
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    imports: [CommonModule, RouterOutlet, HomeComponent, MainNavbarComponent]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'ConectaBarrio';
 
-  testRes: string[] = [];
+  isIFrame: boolean;
 
   constructor(
-    private activitySvc: ActivitiesService,
-    private newsSvc: NewsService){
-
+    private mainConfSvc: MainConfigurationService,
+    private readonly router: Router,
+    private translateSvc: TranslateService,
+    private readonly titleService: Title,
+    private matIconReg: MatIconRegistry,
+    private domSanitizer: DomSanitizer
+  ){
+    this.mainConfSvc.ApplyMainConfiguration();
   }
 
-  test(): void{}
+  ngOnInit(): void {
+    this.isIFrame = window !== window.parent && !window.opener;
+  }
 
 }

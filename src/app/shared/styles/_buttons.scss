@@ -1,0 +1,14 @@
+button:focus{
+    outline:none !important;
+}
+
+/// @group Buttons
+.btn-theme, .btn-btn-theme{
+    background-color: #715EE8;
+    border-color: #715EE8;
+    color: #ffe484;
+    &:hover {
+        background-color: #43388A;
+        color: #ffe484;
+    }
+}

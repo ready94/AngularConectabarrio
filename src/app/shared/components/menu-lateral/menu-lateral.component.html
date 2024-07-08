@@ -1,0 +1,10 @@
+<div class="sidebar">
+  <ul class="nav flex-column">
+    @for (option of opciones; track option) {
+      <li class="sidebar-item" (click)="openOption(option)">
+        {{option.value}}
+      </li>
+    }
+  </ul>
+</div>
+  

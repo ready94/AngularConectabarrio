@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment.development';
 import { LoginModel } from '../models/login.model';
 import { Observable } from 'rxjs';
+import { ResponseResult } from '@shared/models/response-result.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,16 +14,18 @@ export class LoginService {
 
   constructor(private router: Router, private httpClient: HttpClient) {}
 
-  Login(idUser: number, user: LoginModel): Observable<boolean> {
-    debugger;
-    const url = this.url + `/Login/${idUser}`;
-    return this.httpClient.post<boolean>(url, user);
+  logIn(user: LoginModel): Observable<ResponseResult<string>> {
+    const url = this.url+ '/login';
+    return this.httpClient.post<ResponseResult<string>>(url, user);
   }
 
   UpdateNew(idUser: number, user: LoginModel): Observable<boolean> {
-    debugger;
     const url = this.url + `/updateUser/${idUser}`;
     return this.httpClient.post<boolean>(url, user);
   }
+
+  getClientIPAddress(): Observable<any>{
+    return this.httpClient.get<any>('http://api.ipify.org/?format=json')
+  };
 
 }

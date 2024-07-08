@@ -26,6 +26,14 @@ import { CalendarModule } from '@calendar/calendar.module';
 import { AlertsModule } from '@alerts/alerts.module';
 import { AdvertisementsModule } from '@advertisements/advertisements.module';
 import { ActivitiesModule } from '@activities/activities.module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+  MatNativeDateModule,
+} from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MY_DATE_FORMATS } from '@news/components/news-form/news-form.component';
 
 registerLocaleData(localeEs, 'es-ES');
 registerLocaleData(localeEn, 'en-GB');
@@ -59,6 +67,10 @@ const providersArray: Provider[] = [
     HomeModule,
     LoginModule,
     NewsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    FormsModule,
 
     TranslateModule.forRoot({
       defaultLanguage: 'es',
@@ -72,7 +84,17 @@ const providersArray: Provider[] = [
     }),
   ],
   schemas: [NO_ERRORS_SCHEMA],
-  providers: providersArray,
-  bootstrap: [AppComponent]
+  providers: [
+    providersArray,
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'en-GB',
+    },
+    {
+      provide: MAT_DATE_FORMATS,
+      useValue: MY_DATE_FORMATS,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

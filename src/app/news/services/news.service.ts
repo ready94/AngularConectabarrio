@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { NewsModel } from '../models/news.model';
+import { NewsModel, NewsResponse } from '../models/news.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -37,4 +37,10 @@ export class NewsService {
     const url = this.url + `/getAllNews`;
     return this.httpClient.get<NewsModel[]>(url);
   }
+
+  GetGoogleNews(): Observable<NewsResponse> {
+    const url = `${environment.apiUrl}/GoogleNews/getAllNews`;
+    return this.httpClient.get<NewsResponse>(url);
+  }
+
 }

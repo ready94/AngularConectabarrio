@@ -1,9 +1,17 @@
 <div class="nav-bar-sticky">
     <img src="../../../../assets/images/BannerConectaBarrio2.png">
-    <span *ngIf="isLogged" class="user"> {{loggedUser}} </span>
-    <div *ngIf="!isLogged" class="float-end py-1">
-        <button mat-raised-button class="btn-theme" (click)="login()">Acceder</button>
-        <button mat-raised-button class="btn-theme mx-2" (click)="register()">Registro</button>
-    </div>
-    <button *ngIf="isLogged" mat-raised-button class="btn-theme mx-2" (click)="logOut()">Salir</button>
+    @if (isLogged) {
+        <div>
+            <span class="user"> {{loggedUser}} </span>
+            <button mat-raised-button class="btn-theme mx-2" style="float: right;" (click)="logOut()">Salir</button>
+        </div>
+    }
+    @else {
+        <div class="float-end py-1">
+            <button mat-raised-button class="btn-theme" (click)="login()">Acceder</button>
+            <button mat-raised-button class="btn-theme mx-2" (click)="register()">Registro</button>
+        </div>
+    }
+    
+    
 </div> 

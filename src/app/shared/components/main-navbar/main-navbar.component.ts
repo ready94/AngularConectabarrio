@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginDialogComponent } from '@login/components/login-dialog/login-dialog.component';
 import { RegisterNewUserComponent } from '@login/components/register-new-user/register-new-user.component';
+import { LoginDto } from '@login/models/loginDTO.model';
 import { LoginComponent } from '@login/pages/login/login.component';
 import { CurrentUser } from '@shared/models/user.model';
 import { MsgService } from '@shared/services/msg.service';
@@ -14,6 +15,9 @@ import { MsgService } from '@shared/services/msg.service';
 export class MainNavbarComponent {
   isLogged: boolean = false;
   loggedUser: string;
+
+  @Output() userLogged = new EventEmitter<LoginDto>();
+
   constructor(private creationDialog: MatDialog,
   private msgSvc: MsgService) {}
 
@@ -24,12 +28,12 @@ export class MainNavbarComponent {
       autoFocus: false
     });
 
-    dialog.afterClosed().subscribe((res: string) => {
-      debugger
-      if(res !== null && res !== '')
+    dialog.afterClosed().subscribe((res: LoginDto) => {
+      if(res !== null)
       {
         this.isLogged = true;
-        this.loggedUser = res;
+        this.loggedUser = res.userName;
+        this.userLogged.emit(res);
       }
     });
 

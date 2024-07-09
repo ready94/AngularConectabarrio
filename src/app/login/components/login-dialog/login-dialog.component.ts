@@ -13,6 +13,7 @@ import { SpinnerService } from '@shared/services/spinner.service';
 import { StorageService } from '@shared/services/storage.service';
 import { LoginForgotPasswordDialogComponent } from '../login-forgot-password-dialog/login-forgot-password-dialog.component';
 import { LoginModel } from '@login/models/login.model';
+import { LoginDto } from '@login/models/loginDTO.model';
 
 @Component({
   selector: 'app-login-dialog',
@@ -105,10 +106,9 @@ export class LoginDialogComponent implements OnInit {
       else userData.userName = user;
 
       this.loginSvc.logIn(userData).subscribe({
-        next: (result: ResponseResult<string>) => {
+        next: (result: ResponseResult<LoginDto>) => {
           this.spinnerSvc.hide();
-          debugger
-          if(result.result !== '')
+          if(result.result !== null)
               this.close(result.result);
           // if (result.msg === 'LOGIN.ERROR.PASSWORD_MAX_EXPIRATION_DAYS') {
           //   this.expiredChangePasswordDialog();
@@ -157,7 +157,6 @@ export class LoginDialogComponent implements OnInit {
   }
 
   close(value: any | null): void{
-    debugger
     this.dialogRef.close(value);
   }
 

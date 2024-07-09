@@ -1,1 +1,40 @@
-<p>news-container works!</p>
+<!-- TOCAR AQUÍ -->
+
+<div class="news-container" >
+    @if (userLoggedIn !== null) {
+        <button mat-raised-button class="btn-theme mx-2" (click)="createNew()">Crear noticia</button>
+}
+
+
+    <div *ngIf="news.length > 0">
+        <div *ngFor="let article of news">
+            <mat-card>
+                <mat-card-header>
+                    <h2>{{article.title}}</h2>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>{{article.description}}</p>
+                    <a [href]="article.url" target="_blank">{{"GENERAL.READ_MORE"| translate}}</a>  
+                </mat-card-content>
+            </mat-card>   
+        </div>
+    </div>
+
+    
+
+    <div *ngIf="userNews.length > 0">
+        <div *ngFor="let article of userNews">
+            <mat-card>
+                <mat-card-header>
+                    <h2>{{article.name}}</h2>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>{{article.description}}</p>
+                    <a [href]="article.url" target="_blank">{{"GENERAL.READ_MORE"| translate}}</a>  
+                </mat-card-content>
+            </mat-card>   
+        </div>
+    </div>
+
+
+</div>

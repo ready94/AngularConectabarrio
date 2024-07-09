@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginDto } from '@login/models/loginDTO.model';
 
 @Component({
   selector: 'app-news-main',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './news-main.component.scss'
 })
 export class NewsMainComponent {
+
+  userLoggedIn: LoginDto = null;
+
+  isUserLogged(event: LoginDto): void {
+    this.userLoggedIn = event;
+  }
 
 }

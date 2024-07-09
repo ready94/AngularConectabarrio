@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment.development';
 import { LoginModel } from '../models/login.model';
 import { Observable } from 'rxjs';
 import { ResponseResult } from '@shared/models/response-result.model';
+import { LoginDto } from '@login/models/loginDTO.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +15,9 @@ export class LoginService {
 
   constructor(private router: Router, private httpClient: HttpClient) {}
 
-  logIn(user: LoginModel): Observable<ResponseResult<string>> {
+  logIn(user: LoginModel): Observable<ResponseResult<LoginDto>> {
     const url = this.url+ '/login';
-    return this.httpClient.post<ResponseResult<string>>(url, user);
+    return this.httpClient.post<ResponseResult<LoginDto>>(url, user);
   }
 
   UpdateNew(idUser: number, user: LoginModel): Observable<boolean> {

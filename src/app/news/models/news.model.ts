@@ -20,10 +20,15 @@ export interface GoogleNewsModel {
     content: string | null;
     description: string | null;
     publishedAt: Date;
-    source: {[key: number]: string} | null;
+   // source: Source;
     title: string | null;
     url: string | null;
     urlToImage: string | null;
+}
+
+export interface Source {
+    id: number | null;
+    name: string | null;
 }
 
 export interface NewsResponse {

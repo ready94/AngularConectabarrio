@@ -34,6 +34,10 @@ import {
 } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MY_DATE_FORMATS } from '@news/components/news-form/news-form.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 registerLocaleData(localeEs, 'es-ES');
 registerLocaleData(localeEn, 'en-GB');
@@ -71,6 +75,10 @@ const providersArray: Provider[] = [
     MatNativeDateModule,
     MatInputModule,
     FormsModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
 
     TranslateModule.forRoot({
       defaultLanguage: 'es',

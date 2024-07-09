@@ -21,9 +21,7 @@ export class NewsContainerComponent implements OnInit {
 
 
   @Input() set userLoggedIn(value: LoginDto) {
-    debugger;
     if (value) {
-      debugger;
       this._userLoggedIn = value;
     }
   }
@@ -45,7 +43,9 @@ export class NewsContainerComponent implements OnInit {
   ngOnInit(): void {
     this.newsSvc.GetGoogleNews().subscribe({
       next: (data: NewsResponse) => {
+        debugger;
         this.news = data.articles;
+       // this.saveGoogleNews(this.news);
       },
       error: (error: string) => {},
     });
@@ -65,6 +65,17 @@ export class NewsContainerComponent implements OnInit {
       data: {idUser: this._userLoggedIn.idUser}
     });
   }
+
+  saveGoogleNews(data: GoogleNewsModel[]): void {
+    debugger
+    this.newsSvc.SaveGoogleNews(data).subscribe({
+      next: (res: boolean) => {
+        
+      },
+      error: (error: string) => {},
+    });
+  }
+
 
   // private test(): void{
   //   let newTest: NewsModel = {

@@ -1,0 +1,11 @@
+<div>
+
+    @if(activitiesList.length > 0){
+        <ul>
+            <li *ngFor="let activity of activitiesList"> {{ activity.location }} </li>
+        </ul>
+    }@else {
+        <span> NO HAY EVENTOS DISPONIBLES </span>
+    }
+
+</div>

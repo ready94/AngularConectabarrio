@@ -60,11 +60,6 @@ export class LoginDialogComponent implements OnInit {
   createForm(): void {
     this.authSvc.removeTokenToLocalStorage();
 
-    // this.formData = this.formBuilder.group({
-    //   userName: [null, [Validators.required]],
-    //   password: [null, [Validators.required]],
-    // });
-    // this.spinnerSvc.hide();
     this.loginSvc.getClientIPAddress().subscribe({
       next: (res: any) => {
         this.formData = this.formBuilder.group({
@@ -92,12 +87,11 @@ export class LoginDialogComponent implements OnInit {
 
   login(): void {
     if (this.formData.valid) {
-
       let userData: LoginModel = {
         ip: this.formData.get('ip').value,
         password: this.formData.get('password').value,
         email: '',
-        userName: ''
+        userName: '',
       };
 
       const user: string = this.formData.get('userName').value;
@@ -108,13 +102,13 @@ export class LoginDialogComponent implements OnInit {
       this.loginSvc.logIn(userData).subscribe({
         next: (result: ResponseResult<LoginDto>) => {
           this.spinnerSvc.hide();
-          if(result.result !== null)
-              this.close(result.result);
-          // if (result.msg === 'LOGIN.ERROR.PASSWORD_MAX_EXPIRATION_DAYS') {
-          //   this.expiredChangePasswordDialog();
-          // } else {
-          //   this.handleLoginResult(result);
-          // }
+          
+          const res: LoginDto = result.result;
+
+          if (res !== null) {
+            this.authSvc.SetSessionStorageToken(res.userName);
+            this.close(result.result);
+          }
         },
         error: (error: string) => {
           this.spinnerSvc.hide();
@@ -130,35 +124,37 @@ export class LoginDialogComponent implements OnInit {
 
   logOut(): void {
     this.logOutSvc.logOut();
-  }
-
-  handleLoginResult(tokenResult: ResponseResult<string>): void {
-    if (tokenResult.success) {
-      //this.authSvc.setTokenToLocalStorage(tokenResult.result);
-      const currentUser = this.authSvc.getCurrentUserData();
-      this.mainConfigSvc.ApplyMainConfigurationLogin(currentUser);
-      this.goToReturnUrl();
-    } else {
-      this.translateSvc.get(tokenResult.msg).subscribe((res: string) => {
-        this.msgSvc.showAlertError(`${res}`);
-      });
-    }
-  }
-
-  expiredChangePasswordDialog(): void {
-    const dialogRef = this.creationDialog.open(
-      LoginForgotPasswordDialogComponent,
-      { width: '40%' }
-    );
+    this.authSvc.LogOut();
   }
 
   goToReturnUrl(): void {
     this.router.navigate([this.returnUrl]);
   }
 
-  close(value: any | null): void{
+  close(value: any | null): void {
+    debugger;
     this.dialogRef.close(value);
   }
 
+  forgotPass(): void {
+    const dialog = this.creationDialog.open(
+      LoginForgotPasswordDialogComponent,
+      {
+        width: '30%',
+        height: '53%',
+        autoFocus: false,
+        disableClose: true,
+      }
+    );
 
+    dialog.afterClosed().subscribe({
+      next: (res: boolean) => {
+        if (res) {
+          setTimeout(() => {
+            window.location.reload();
+          }, 1500);
+        }
+      },
+    });
+  }
 }

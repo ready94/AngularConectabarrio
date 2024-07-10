@@ -1,40 +1,41 @@
 <!-- TOCAR AQUÍ -->
 
 <div class="news-container" >
-    @if (userLoggedIn !== null) {
-        <button mat-raised-button class="btn-theme mx-2" (click)="createNew()">Crear noticia</button>
-}
-
-
-    <div *ngIf="news.length > 0">
-        <div *ngFor="let article of news">
-            <mat-card>
-                <mat-card-header>
-                    <h2>{{article.title}}</h2>
-                </mat-card-header>
-                <mat-card-content>
-                    <p>{{article.description}}</p>
-                    <a [href]="article.url" target="_blank">{{"GENERAL.READ_MORE"| translate}}</a>  
-                </mat-card-content>
-            </mat-card>   
-        </div>
-    </div>
-
     
+    @if (userLoggedIn !== null) {
+        <button mat-raised-button class="btn-theme mx-2 float-end" (click)="createNew()">Crear noticia</button>
+    }
 
-    <div *ngIf="userNews.length > 0">
-        <div *ngFor="let article of userNews">
-            <mat-card>
-                <mat-card-header>
-                    <h2>{{article.name}}</h2>
-                </mat-card-header>
-                <mat-card-content>
-                    <p>{{article.description}}</p>
-                    <a [href]="article.url" target="_blank">{{"GENERAL.READ_MORE"| translate}}</a>  
-                </mat-card-content>
-            </mat-card>   
+    <div *ngFor="let article of news" class="cards-container">
+        <div class="row-cards" *ngFor="let row of rowsGoogle">
+            <div class="column-cards" *ngFor="let item of row">
+                <mat-card class="card" >
+                    <mat-card-header>
+                        <h2>{{item.title}}</h2>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>{{item.description}}</p>
+                        <a [href]="item.url" target="_blank">{{"GENERAL.READ_MORE"| translate}}</a>  
+                    </mat-card-content>
+                </mat-card>   
+            </div>
         </div>
     </div>
-
+    
+    <div class="cards-container">
+        <div class="row-cards" *ngFor="let row of rowsNews">
+            <div class="column-cards" *ngFor="let item of row">
+                <mat-card class="card" > 
+                    <mat-card-header>
+                        <h2>{{item.name}}</h2>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>{{item.description}}</p>
+                        <a [href]="item.url" target="_blank">{{"GENERAL.READ_MORE"| translate}}</a>  
+                    </mat-card-content>
+                </mat-card>   
+            </div>
+        </div>
+    </div>
 
 </div>

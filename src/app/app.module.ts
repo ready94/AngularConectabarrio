@@ -75,10 +75,7 @@ const providersArray: Provider[] = [
     MatNativeDateModule,
     MatInputModule,
     FormsModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
+    MaterialModule,
 
     TranslateModule.forRoot({
       defaultLanguage: 'es',

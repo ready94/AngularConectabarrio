@@ -75,4 +75,20 @@ export class AuthService {
     return result;
   }
 
+  SetSessionStorageToken(userName: string): void {
+    const userSession = {userName, token: 'barrioSession'};
+    sessionStorage.setItem('currentUser', JSON.stringify(userSession));
+  }
+  
+  LogOut(): void {
+    sessionStorage.removeItem('currentUser');
+  }
+
+  GetCurrentUserSession(): any {
+    return JSON.parse(sessionStorage.getItem('currentUser'));
+  }
+
+  isAuthenticated(): boolean {
+    return !!sessionStorage.getItem('currentUser');
+  }
 }

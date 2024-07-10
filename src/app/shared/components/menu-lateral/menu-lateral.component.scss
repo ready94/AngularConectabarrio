@@ -1,16 +1,42 @@
-.sidebar{
-    align-items: center;
-    width: 5%;
-    color: black;
-    font-size: 36px;
-    left: 0;
-    z-index: 1000;
-    display: flex;
-    grid-template-columns: auto;
-    grid-template-rows: auto;
+.example-container {
+  height: 100vh;
+  display: flex;
 }
 
-.sidebar-item{
-    margin-bottom: 10px;
-    padding: 5px 15px;
+.example-sidenav {
+  width: 100%; /* El ancho que tendrá cuando esté expandido */
+}
+
+mat-sidenav-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-button {
+  background-color: white;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1000; /* Asegúrate de que el botón esté por encima de otros elementos */
+}
+
+.content {
+  padding: 16px;
+  margin-top: 64px; /* Ajusta esto según la altura de tu botón */
+}
+
+.btn-theme,
+.btn-btn-theme {
+  top: 2px;
+  padding: 15px 25px;
+  font-size: large;
+  background-color: #715ee8;
+  border-color: #715ee8;
+  color: #ffe484;
+  z-index: 1;
+  &:hover {
+    background-color: #43388a;
+    color: #ffe484;
+  }
 }

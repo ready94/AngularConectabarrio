@@ -28,7 +28,8 @@
             </div>
         <div mat-dialog-actions class="py-1 float-end">
             <button mat-raised-button color="primary" type="submit" class="py-1 float-end" (click)="login()">Acceder</button>
-            <button mat-raised-button color="warn" mat-dialog-close class="py-1 float-end">Cerrar</button>
+            <button mat-raised-button color="warn" class="py-1 float-end" (click)="close(null)">Cerrar</button>
+            <button mat-raised-button color="blue" class="py-1 float-end" (click)="forgotPass()">¿Contraseña olvidada?</button>
         </div>
     </form>
 

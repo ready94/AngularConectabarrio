@@ -1,10 +1,24 @@
-<div class="sidebar">
-  <ul class="nav flex-column">
-    @for (option of opciones; track option) {
-      <li class="sidebar-item" (click)="openOption(option)">
-        {{option.value}}
-      </li>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="over" opened>
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      @for (opcion of opciones; track opcion) {
+      <mat-list-item>
+        <mat-icon>home</mat-icon>
+        <span (click)="openOption(opcion)">{{ opcion.value }}</span>
+      </mat-list-item>
     }
-  </ul>
-</div>
-  
+      <!-- Agrega más ítems de navegación aquí -->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <button mat-icon-button class="menu-button btn-theme" (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="content">
+      <!-- Contenido principal de la aplicación -->
+      <h1>Welcome to My Application</h1>
+      <p>Main content goes here.</p>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

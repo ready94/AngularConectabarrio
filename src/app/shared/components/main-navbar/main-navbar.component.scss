@@ -3,9 +3,11 @@
     background-position: relative;
     background-repeat: no-repeat;
     background-color: white;
+    box-shadow: 0 4px 2px -2px gray;
     width: 100vw;
     height: 10vh;    
-    z-index: 0;
+    z-index: 500;
+    position: fixed;
 }
 
 .nav-bar-sticky img{
@@ -36,4 +38,13 @@
 .user {
     font-size: medium;
     font-weight: bold;
+    margin-top: 2%;
+}
+
+.user-info { 
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 1000;
+
 }

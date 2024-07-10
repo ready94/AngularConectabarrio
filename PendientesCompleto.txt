@@ -1,0 +1,4 @@
+Securizar app (encriptar, parametrizar...)
+Responsive
+Servicio de correo
+Login -> Numero de intentos

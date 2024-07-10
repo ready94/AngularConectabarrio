@@ -3,12 +3,61 @@
     background-size: contain;
     background-position: relative;
     background-repeat: no-repeat;
-    height: 90vh;
+    height: 100vh;
     width: 100%;
+    max-height: 900px;
+    overflow-y: auto;
+    padding-top: 5%;
+
 }
 
 
-mat-card {
-    width: 30%;
-    height: 30%;
+// mat-card {
+//     width: 30%;
+//     height: 30%;
+// }
+
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+  
+.row-cards{
+    display: flex;
+    justify-content: center;
+    margin: 5% 0 20px 20%;
+    width: 70%;
+}
+
+.column-cards{
+    flex: 1;
+    margin: 10px;
+    width: 100%;
+}
+
+.card {
+    margin: 10px; /* Espacio entre las tarjetas */
+    width: 100%; /* Ancho de cada tarjeta */
+    height: 100%;
+}
+
+.btn-theme, .btn-btn-theme{
+    top: 2px;
+    padding: 15px 25px;
+    font-size: large;
+    background-color: #715EE8;
+    border-color: #715EE8;
+    color: #ffe484;
+    z-index: 1;
+    &:hover {
+        background-color: #43388A;
+        color: #ffe484;
+    }
+}
+
+.float-end{
+    font-size: larger;
+    justify-items: end;
 }

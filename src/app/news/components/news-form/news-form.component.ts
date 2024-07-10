@@ -1,18 +1,12 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
-import { MAT_DATE_LOCALE, MatDateFormats } from '@angular/material/core';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '@login/services/user.service';
+import { MatDateFormats } from '@angular/material/core';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { EnumNewsCategory } from '@news/enums/news-category.enum';
 import { NewsService } from '@news/services/news.service';
 import { TranslateService } from '@ngx-translate/core';
-import { ResponseResult } from '@shared/models/response-result.model';
-import { AuthService } from '@shared/services/auth.service';
-import { MainConfigurationService } from '@shared/services/main-configuration.service';
 import { MsgService } from '@shared/services/msg.service';
 import { SpinnerService } from '@shared/services/spinner.service';
-import { StorageService } from '@shared/services/storage.service';
 
 export const MY_DATE_FORMATS: MatDateFormats = {
   parse: {
@@ -45,17 +39,12 @@ export class NewsFormComponent {
 
   constructor(
     private creationDialog: MatDialog,
+    private dialogRef: MatDialogRef<NewsFormComponent>,
     private formBuilder: UntypedFormBuilder,
     private msgSvc: MsgService,
-    private router: Router,
-    private route: ActivatedRoute,
     private spinnerSvc: SpinnerService,
-    private storageSvc: StorageService,
-    private authSvc: AuthService,
-    private userSvc: UserService,
     private newsSvc: NewsService,
     private translateSvc: TranslateService,
-    private mainConfigSvc: MainConfigurationService,
     @Inject(MAT_DIALOG_DATA) public data
   ) {
     this.idUser = data.idUser;
@@ -80,8 +69,9 @@ export class NewsFormComponent {
     if (this.formData.valid) {
       this.newsSvc.CreateNew(this.idUser, this.formData.value).subscribe({
         next: (res: boolean) => {
-          if (res) {
+          if (res === true) {
             this.msgSvc.showAlertSuccess("OK");
+            this.dialogRef.close(true);
           } else {
             this.msgSvc.showAlertError("ERROR");
           }

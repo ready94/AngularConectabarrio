@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,6 +14,8 @@ export class MenuLateralComponent {
     { id: 3, value: 'Alertas' },
     { id: 4, value: 'Calendario' },
   ];
+
+  @ViewChild('sidenav') sidenav: MatSidenav;
 
   constructor(
     private router: Router){}

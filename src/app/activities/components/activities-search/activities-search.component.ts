@@ -1,6 +1,7 @@
 import { ActivitiesModel } from '@activities/models/activities.model';
 import { ActivitiesService } from '@activities/services/activities.service';
 import { Component, OnInit } from '@angular/core';
+import { LoginDto } from '@login/models/loginDTO.model';
 
 @Component({
   selector: 'app-activities-search',
@@ -8,6 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './activities-search.component.scss'
 })
 export class ActivitiesSearchComponent implements OnInit{
+
+  userLoggedIn: LoginDto = null;
+
+  isUserLogged(event: LoginDto): void {
+    this.userLoggedIn = event;
+  }
+
 
   activitiesList: ActivitiesModel[] = [];
 
@@ -21,5 +29,10 @@ export class ActivitiesSearchComponent implements OnInit{
         }
       })
   }
+
+  enter(activity: ActivitiesModel): void {
+
+  }
+
 
 }

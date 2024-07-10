@@ -26,7 +26,7 @@ export class UserService {
   }
 
   DeleteUser(idUser: number): Observable<boolean> {
-    const url = this.url + `/deleteUser/}`;
+    const url = this.url + `/deleteUser`;
     return this.httpClient.post<boolean>(url, idUser);
   }
 

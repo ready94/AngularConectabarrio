@@ -19,6 +19,8 @@ export class NewsContainerComponent implements OnInit {
   news: GoogleNewsModel[] = [];
   userNews: NewsModel[] = [];
 
+  rowsGoogle: any[] = [];
+  rowsNews: any[] = [];
 
   @Input() set userLoggedIn(value: LoginDto) {
     if (value) {
@@ -41,20 +43,7 @@ export class NewsContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.newsSvc.GetGoogleNews().subscribe({
-      next: (data: NewsResponse) => {
-        debugger;
-        this.news = data.articles;
-       // this.saveGoogleNews(this.news);
-      },
-      error: (error: string) => {},
-    });
-    this.newsSvc.GetAllNews().subscribe({
-      next: (data: NewsModel[]) => {
-        this.userNews = data;
-      },
-      error: (error: string) => {},
-    });
+    this.getNews();
   }
 
   createNew(): void {
@@ -62,42 +51,54 @@ export class NewsContainerComponent implements OnInit {
       width: '30%',
       height: '70%',
       autoFocus: false,
-      data: {idUser: this._userLoggedIn.idUser}
+      data: { idUser: this._userLoggedIn.idUser },
+    });
+
+    dialog.afterClosed().subscribe({
+      next: (res: boolean) => {this.getNews();},
     });
   }
 
   saveGoogleNews(data: GoogleNewsModel[]): void {
-    debugger
     this.newsSvc.SaveGoogleNews(data).subscribe({
-      next: (res: boolean) => {
-        
-      },
+      next: (res: boolean) => {},
       error: (error: string) => {},
     });
   }
 
+  getNews(): void {
+    this.newsSvc.GetGoogleNews().subscribe({
+      next: (data: NewsResponse) => {
+        debugger;
+        this.news = data.articles;
+        this.getGoogleNewsInRows();
+      },
+      error: (error: string) => {},
+    });
+    this.newsSvc.GetAllNews().subscribe({
+      next: (data: NewsModel[]) => {
+        this.userNews = data;
+        this.getNewsInRows();
+      },
+      error: (error: string) => {},
+    });
 
-  // private test(): void{
-  //   let newTest: NewsModel = {
-  //     active: true,
-  //     creationDate: new Date(),
-  //     creationUser: 1,
-  //     description: "",
-  //     endDate: new Date(),
-  //     idCategory: 1,
-  //     idNew: 1,
-  //     name: "TEST",
-  //     startDate: new Date(),
-  //     modificationDate: null,
-  //     modificationUser: null
-  //   }
 
-  //   this.newsSvc.CreateNew(1, newTest).subscribe({
-  //     next: (res: boolean) => {
-  //       console.log("TEST");
-  //     }, error: (error: string) => {
-  //       console.log("ERROR");
-  //     }
-  //   })
-  // }
+
+  }
+
+  getGoogleNewsInRows(): void {
+    debugger
+    for(let i: number = 0; i < this.news.length; i += 3){
+      this.rowsGoogle.push(this.news.slice(i, i + 3));
+    }
+  }
+
+  getNewsInRows(): void {
+    debugger
+    for(let i: number = 0; i < this.userNews.length; i += 3){
+      this.rowsNews.push(this.userNews.slice(i, i + 3));
+    }
+  }
+
 }

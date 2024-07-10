@@ -1,1 +1,23 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="over" [opened]="false">
+      <mat-toolbar>Menu</mat-toolbar>
+      <mat-nav-list>
+        @for (opcion of opciones; track opcion) {
+        <mat-list-item>
+          <mat-icon>{{opcion.icon}}</mat-icon>
+          <span (click)="openOption(opcion)">{{ opcion.value }}</span>
+        </mat-list-item>
+      }
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <button mat-icon-button class="menu-button btn-theme" (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+

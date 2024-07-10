@@ -165,3 +165,45 @@
       margin-block: 1.5rem;
     }
   }
+
+
+
+  .example-container {
+    height: 100vh;
+    display: flex;
+  }
+  
+  .example-sidenav {
+    width: 10vw; /* El ancho que tendrá cuando esté expandido */
+  }
+  
+  mat-sidenav-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .menu-button {
+    background-color: #715ee8;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 1000; /* Asegúrate de que el botón esté por encima de otros elementos */
+  }
+  
+  .content-main-sidenav {
+    padding: 16px;
+    margin-top: 64px; /* Ajusta esto según la altura de tu botón */
+  }
+  
+  .btn-theme,
+  .btn-btn-theme {
+    font-size: large;
+    border-color: #715ee8;
+    color: #ffe484;
+    &:hover {
+      background-color: #43388a;
+      color: #ffe484;
+    }
+  }
+  

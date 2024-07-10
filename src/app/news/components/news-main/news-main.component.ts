@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginDto } from '@login/models/loginDTO.model';
+import { AuthService } from '@shared/services/auth.service';
 
 @Component({
   selector: 'app-news-main',
@@ -9,9 +10,15 @@ import { LoginDto } from '@login/models/loginDTO.model';
 export class NewsMainComponent {
 
   userLoggedIn: LoginDto = null;
+  logged: boolean = false;
 
-  isUserLogged(event: LoginDto): void {
-    this.userLoggedIn = event;
+  constructor(private authSvc: AuthService){
+    this.isLogged();
   }
+
+  isLogged(): void{
+    this.logged = this.authSvc.isAuthenticated();
+  }
+
 
 }

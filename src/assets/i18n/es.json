@@ -81,5 +81,13 @@
   },
   "GENERAL": {
     "READ_MORE": "Leer más"
+  },
+  "OPTIONS": {
+    "HOME": "Inicio",
+    "NEWS": "Noticias",
+    "EVENTS": "Actividades / Eventos",
+    "COMPLAINTS": "Denuncias / Quejas",
+    "CALENDAR": "Calendario",
+    "ADMINISTRATION": "Administración"
   }
 }

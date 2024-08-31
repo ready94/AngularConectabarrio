@@ -8,6 +8,7 @@ import { AlertsMainComponent } from './components/alerts-main/alerts-main.compon
 import { AlertsComponent } from './pages/alerts/alerts.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { MaterialModule } from '../material/material.module';
     AlertsMainComponent,
     AlertsComponent
   ],
-  imports: [CommonModule, AlertsRoutingModule, SharedModule, MaterialModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, AlertsRoutingModule, SharedModule, TranslateModule, MaterialModule, FormsModule, ReactiveFormsModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AlertsModule {}

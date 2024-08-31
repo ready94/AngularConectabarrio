@@ -3,8 +3,14 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { MatSidenav } from '@angular/material/sidenav';
 import { DomSanitizer, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { EnumRoles } from '@login/enums/roles.enum';
+import { LoginDto } from '@login/models/loginDTO.model';
 import { TranslateService } from '@ngx-translate/core';
+import { EnumMenuOptions } from '@shared/enums/enum-options-menu.enum';
+import { OptionsModel } from '@shared/models/options.model';
+import { AuthService } from '@shared/services/auth.service';
 import { MainConfigurationService } from '@shared/services/main-configuration.service';
+import { SharedService } from '@shared/services/shared-service.service';
 
 @Component({
   selector: 'app-root',
@@ -20,35 +26,42 @@ export class AppComponent implements OnInit {
     { id: 0, value: 'Inicio', icon: 'home' },
     { id: 1, value: 'Noticias', icon: 'newspaper' },
     { id: 2, value: 'Eventos', icon: 'campaign' },
-    { id: 3, value: 'Alertas', icon: 'notifications' },
+    { id: 3, value: 'Quejas / Denuncias', icon: 'notifications' },
     { id: 4, value: 'Calendario', icon: 'calendar_month' },
   ];
+
+  options: OptionsModel[] = [];
 
   @ViewChild('sidenav') sidenav: MatSidenav;
 
   opened: boolean = false;
+  isLogged: boolean;
+  userLog: LoginDto;
+  enumRoles = EnumRoles;
 
   closeSidenav(): void {
     this.opened = false;
   }
 
-  openOption(option: any): void {
-    debugger;
-    switch (option.id) {
-      case 0:
-        this.router.navigate(['']);
+  openOption(option: OptionsModel): void {
+    switch (option.idOption) {
+      case EnumMenuOptions.HOME:
+        this.router.navigate(['home']);
         break;
-      case 1:
+      case EnumMenuOptions.NEWS:
         this.router.navigate(['news']);
         break;
-      case 2:
+      case EnumMenuOptions.EVENTS:
         this.router.navigate(['activities']);
         break;
-      case 3:
-        this.router.navigate(['alerts']);
+      case EnumMenuOptions.COMPLAINTS:
+        this.router.navigate(['complaints']);
         break;
-      case 4:
+      case EnumMenuOptions.CALENDAR:
         this.router.navigate(['calendar']);
+        break;
+      case EnumMenuOptions.ADMINISTRATION:
+        this.router.navigate(['admin']);
         break;
     }
   }
@@ -58,12 +71,27 @@ export class AppComponent implements OnInit {
     private translateSvc: TranslateService,
     private readonly titleService: Title,
     private matIconReg: MatIconRegistry,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private sharedSvc: SharedService,
+    private authSvc: AuthService
   ) {
+
     //this.mainConfSvc.ApplyMainConfiguration();
   }
 
   ngOnInit(): void {
     this.isIFrame = window !== window.parent && !window.opener;
+
+    if (this.authSvc.isAuthenticated()) {
+      this.isLogged = true;
+      this.userLog = this.authSvc.GetCurrentUserSession().user;
+    }
+  
+    this.sharedSvc.GetSideNavMenuOptions().subscribe({
+      next: (res: OptionsModel[]) => {
+        this.options = res;
+      },
+      error: (err: string) => {},
+    });
   }
 }

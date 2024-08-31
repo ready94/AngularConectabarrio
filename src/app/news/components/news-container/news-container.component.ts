@@ -9,6 +9,7 @@ import { NewsService } from '@news/services/news.service';
 import { TranslateService } from '@ngx-translate/core';
 import { NewsFormComponent } from '../news-form/news-form.component';
 import { LoginDto } from '@login/models/loginDTO.model';
+import { AuthService } from '@shared/services/auth.service';
 
 @Component({
   selector: 'app-news-container',
@@ -22,24 +23,19 @@ export class NewsContainerComponent implements OnInit {
   rowsGoogle: any[] = [];
   rowsNews: any[] = [];
 
-  @Input() set userLoggedIn(value: LoginDto) {
-    if (value) {
-      this._userLoggedIn = value;
-    }
-  }
-
-  get userLoggedIn(): LoginDto {
-    return this._userLoggedIn;
-  }
-
-  private _userLoggedIn: LoginDto = null;
+  logged: boolean = false;
+  userLoggedIn: LoginDto;
 
   constructor(
     private newsSvc: NewsService,
     private translateSvc: TranslateService,
-    private creationDialog: MatDialog
+    private creationDialog: MatDialog,
+    private authSvc: AuthService
   ) {
-    // this.test();
+    if (this.authSvc.isAuthenticated()) {
+      this.logged = true;
+      this.userLoggedIn = this.authSvc.GetCurrentUserSession().user;
+    }
   }
 
   ngOnInit(): void {
@@ -51,11 +47,13 @@ export class NewsContainerComponent implements OnInit {
       width: '30%',
       height: '70%',
       autoFocus: false,
-      data: { idUser: this._userLoggedIn.idUser },
+      data: { idUser: this.userLoggedIn.idUser },
     });
 
     dialog.afterClosed().subscribe({
-      next: (res: boolean) => {this.getNews();},
+      next: (res: boolean) => {
+        if (res) this.getNews();
+      },
     });
   }
 
@@ -67,9 +65,11 @@ export class NewsContainerComponent implements OnInit {
   }
 
   getNews(): void {
+    this.news = [];
+    this.userNews = [];
+
     this.newsSvc.GetGoogleNews().subscribe({
       next: (data: NewsResponse) => {
-        debugger;
         this.news = data.articles;
         this.getGoogleNewsInRows();
       },
@@ -82,23 +82,28 @@ export class NewsContainerComponent implements OnInit {
       },
       error: (error: string) => {},
     });
-
-
-
   }
 
   getGoogleNewsInRows(): void {
-    debugger
-    for(let i: number = 0; i < this.news.length; i += 3){
+    this.rowsGoogle = [];
+    for (let i: number = 0; i < this.news.length; i += 3) {
       this.rowsGoogle.push(this.news.slice(i, i + 3));
     }
   }
 
   getNewsInRows(): void {
-    debugger
-    for(let i: number = 0; i < this.userNews.length; i += 3){
+    this.rowsNews = [];
+    for (let i: number = 0; i < this.userNews.length; i += 3) {
       this.rowsNews.push(this.userNews.slice(i, i + 3));
     }
+  }
+
+  update(item: any) {
+debugger;
+  }
+
+  delete(item: any){
+debugger;
   }
 
 }

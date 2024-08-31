@@ -3,7 +3,7 @@
     
     @if (isLogged) {
         <div class="user-info align-items-center">
-            <span class="user"> {{loggedUser}} </span>
+            <span class="user"> {{userLog.userName}} </span>
             <button mat-raised-button class="btn-theme mx-3" style="float: right;" (click)="logOut()">
                 <mat-icon>logout</mat-icon>Salir</button>
         </div>

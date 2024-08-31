@@ -8,6 +8,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { RegisterNewUserComponent } from './components/register-new-user/register-new-user.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { RegisterNewUserComponent } from './components/register-new-user/registe
     CommonModule,
     LoginRoutingModule,
     SharedModule,
+    TranslateModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,

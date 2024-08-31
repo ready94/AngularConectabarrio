@@ -1,0 +1,51 @@
+<div class="card w-100 p-4">
+
+    <mat-card-header>
+        <img src="../../../../assets/images/header-dialog.png">
+    </mat-card-header>
+
+    <form *ngIf="formData" [formGroup]="formData">
+        
+        <div class="row"> 
+            <mat-form-field>
+                <mat-label>Selecciona tipo</mat-label>
+                <mat-select formControlName="idComplaintType">
+                    <mat-option *ngFor="let cat of types" [value]="cat.key">
+                        {{cat.value}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="row"> 
+            <mat-form-field>
+                <mat-label>Selecciona prioridad</mat-label>
+                <mat-select formControlName="idPriority">
+                    <mat-option *ngFor="let cat of priorities" [value]="cat.key">
+                        {{cat.value}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field class="input-form" appearance="outline">
+                <mat-label>Título</mat-label>
+                <input matInput formControlName="title" />
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field class="input-form" appearance="outline">
+                <mat-label>Descripción</mat-label>
+                <input matInput formControlName="description" />
+            </mat-form-field>
+        </div>
+
+        <div mat-dialog-actions class="py-1 float-end">
+            <button mat-raised-button color="primary" mat-dialog-close type="submit" class="py-1 float-end" (click)="register()">Crear denuncia</button>
+            <button mat-raised-button color="warn" mat-dialog-close class="py-1 float-end">Cerrar</button>
+        </div>
+    </form>
+
+</div>

@@ -1,24 +1,93 @@
-<app-main-navbar (userLogged)="isUserLogged($event)"></app-main-navbar>
+<app-main-navbar></app-main-navbar>
 <div class="container mt-5">
     <h1 class="mb-4">Lista de eventos disponibles actualmente</h1>
-    <ul class="list-group">
+    <!-- <ul class="list-group">
 
-        @if(activitiesList.length > 0){
+        @if(eventsCompleteList.length > 0){
             
-            <li class="list-group-item" *ngFor="let activity of activitiesList"> 
+            <li class="list-group-item" *ngFor="let activity of eventsCompleteList"> 
                 <div class="d-flex justify-content-between align-items-center">
-                {{ activity.location }} 
+                Lugar: {{ activity.location }} - Categoría: {{ activity.eventCategory }} - Subcategoría: {{ activity.eventSubCategory }} - Fecha del evento: {{ activity.eventDate | date:"dd/MM/yyyy HH:mm" }}
+                - Personas apuntadas: {{ activity.actualPerson}} - Máximo de personas: {{ activity.maxPerson }}
                 <button class="btn btn-primary" (click)="enter(activity)">Apuntarse</button> 
                 </div>
             </li>
          
         }@else {
-            <li class="list-group-item" *ngFor="let activity of activitiesList"> 
+            <li class="list-group-item" *ngFor="let activity of eventsCompleteList"> 
                 <div class="d-flex justify-content-between align-items-center">
                     <span> NO HAY EVENTOS DISPONIBLES </span>
                 </div>
             </li>
             
         }
-    </ul>
+    </ul> -->
+    <div class="mat-elevation-z8">
+        <div class="table-container">
+          <mat-table [dataSource]="dataSource" matSort class="mat-table">
+            <!-- ID Column -->
+            <ng-container matColumnDef="eventType">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.eventType}} </mat-cell>
+            </ng-container>
+      
+            <!-- Nombre Column -->
+            <ng-container matColumnDef="location">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Localización </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.location}}</mat-cell>
+            </ng-container>
+      
+            <!-- Descripción Column -->
+            <ng-container matColumnDef="category">
+              <mat-header-cell *matHeaderCellDef> Categoría </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.eventCategory}} </mat-cell>
+            </ng-container>
+      
+            <ng-container matColumnDef="subcategory">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Subcategoría </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.eventSubCategory}} </mat-cell>
+              </ng-container>
+        
+            <!-- Nombre Column -->
+            <ng-container matColumnDef="eventDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.eventDate | date:"dd/MM/yyyy HH:mm"}}</mat-cell>
+            </ng-container>
+        
+            <!-- Descripción Column -->
+            <ng-container matColumnDef="actualPerson">
+                <mat-header-cell *matHeaderCellDef> Apuntados </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.actualPerson}} </mat-cell>
+            </ng-container>
+        
+            <!-- Descripción Column -->
+            <ng-container matColumnDef="maxPerson">
+                <mat-header-cell *matHeaderCellDef> Nº Máximo </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.maxPerson}} </mat-cell>
+            </ng-container>
+                    
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+
+                    @if(element.alreadyIn ){
+                        <button *ngIf="!element.isTheCreationUser" class="btn btn-primary" (click)="exit(element)">Desapuntarse</button>
+ 
+                    }@else {
+                        <button *ngIf="!element.isTheCreationUser" class="btn btn-primary" (click)="enter(element)">Apuntarse</button>
+                    }
+                </mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+      
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+    </div>
+
+    @if (userLoggedIn !== null) {
+        <button mat-raised-button class="btn-theme mx-2 float-end" (click)="createEvent()">Crear evento</button>
+    }
 </div>

@@ -7,6 +7,7 @@ import { HomeContainerComponent } from './components/home-container/home-contain
 import { HomeMainComponent } from './components/home-main/home-main.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './pages/home/home.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [HomeComponent, HomeContainerComponent, HomeMainComponent],
@@ -14,6 +15,7 @@ import { HomeComponent } from './pages/home/home.component';
     HomeRoutingModule,
     SharedModule,
     FormsModule,
+    TranslateModule,
     MaterialModule,
     ReactiveFormsModule,
   ],

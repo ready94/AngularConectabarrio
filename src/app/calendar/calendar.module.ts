@@ -8,6 +8,7 @@ import { CalendarListComponent } from './components/calendar-list/calendar-list.
 import { CalendarMainComponent } from './components/calendar-main/calendar-main.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,15 @@ import { MaterialModule } from '../material/material.module';
     CalendarListComponent,
     CalendarMainComponent,
   ],
-  imports: [CommonModule, CalendarRoutingModule, SharedModule, MaterialModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    CalendarRoutingModule,
+    SharedModule,
+    TranslateModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CalendarModule {}

@@ -1,1 +1,43 @@
-<p>complaints-container works!</p>
+<div class="news-container" >
+    
+    @if (userLoggedIn !== null) {
+        <button mat-raised-button class="btn-theme mx-2 float-end" (click)="createComplaint()">Crear denuncia</button>
+    }
+
+    <div  class="cards-container">
+        <div class="row-cards" *ngFor="let row of rowsMyComplaints">
+            <div class="column-cards" *ngFor="let item of row">
+                <mat-card class="card" >
+                    <mat-card-header>
+                        <h2>{{item.title}}</h2>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>{{item.description}}</p>
+                        <a [href]="item.url" target="_blank">{{"GENERAL.READ_MORE"| translate}}</a>  
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-raised-button class="btn-theme mx-2 float-end" (click)="update(item)">Editar</button>
+                        <button mat-raised-button class="btn-theme mx-2 float-end" (click)="delete(item)">Eliminar</button>
+                    </mat-card-actions>
+                </mat-card>   
+            </div>
+        </div>
+    </div>
+    
+    <div class="cards-container">
+        <div class="row-cards" *ngFor="let row of rowsComplaints">
+            <div class="column-cards" *ngFor="let item of row">
+                <mat-card class="card" > 
+                    <mat-card-header>
+                        <h2>{{item.title}}</h2>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>{{item.description}}</p>
+                        <a [href]="item.url" target="_blank">{{"GENERAL.READ_MORE"| translate}}</a>  
+                    </mat-card-content>
+                </mat-card>   
+            </div>
+        </div>
+    </div>
+
+</div>

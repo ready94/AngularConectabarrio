@@ -1,0 +1,8 @@
+<div class="container">
+    <div class="left-panel">
+      <app-admin-left-panel (optionSelected)="selectedOption($event)"></app-admin-left-panel>
+    </div>
+    <div class="right-panel">
+      <app-admin-right-panel [optionSelected]="_selectedOption"></app-admin-right-panel>
+    </div>
+  </div>

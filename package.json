@@ -25,6 +25,7 @@
     "@ngx-translate/http-loader": "^8.0.0",
     "bootstrap": "^5.3.3",
     "crypto-js": "^4.2.0",
+    "ngx-page-scroll": "^12.0.0",
     "rxjs": "~7.8.1",
     "sass": "^1.77.6",
     "sweetalert2": "^11.12.1",

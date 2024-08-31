@@ -1,0 +1,6 @@
+<ul>
+    <li *ngFor="let option of options" (click)="selectOption(option)">
+      <div>{{ option.value | translate }}</div>
+    </li>
+
+</ul>

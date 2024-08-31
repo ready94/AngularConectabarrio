@@ -1,4 +1,7 @@
 Securizar app (encriptar, parametrizar...)
 Responsive
-Servicio de correo
+Servicio de correo (cuando se suba al hosting)
 Login -> Numero de intentos
+Traducción a inglés
+Opción de Administrador
+Calendario en formato local

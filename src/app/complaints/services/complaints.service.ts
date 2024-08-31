@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ComplaintModel } from '../models/complaint.model';
+import { ComplaintDTO } from '@complaints/models/complaintDTO.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class ComplaintsService {
 
   constructor(private router: Router, private httpClient: HttpClient) {}
 
-  CreateComplaint(idUser: number, complaint: ComplaintModel): Observable<boolean> {
+  CreateComplaint(idUser: number, complaint: ComplaintDTO): Observable<boolean> {
     const url = this.url + `/createComplaint/${idUser}`;
     return this.httpClient.post<boolean>(url, complaint);
   }

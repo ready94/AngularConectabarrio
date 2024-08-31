@@ -105,7 +105,6 @@ export class LoginForgotPasswordDialogComponent {
   }
 
   close(value: any | null): void {
-    debugger;
     this.dialogRef.close(value);
   }
 }

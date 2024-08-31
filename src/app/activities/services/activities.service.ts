@@ -5,6 +5,9 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ActivitiesModel } from '@activities/models/activities.model';
 import { FilterModel } from '@shared/models/filters.model';
+import { EventTypeModel } from '@activities/models/event-type.model';
+import { EventCategoryModel } from '@activities/models/event-category.model';
+import { EventSubcategoryModel } from '@activities/models/event-subcategory.model';
 
 @Injectable({
   providedIn: 'root'
@@ -41,13 +44,39 @@ export class ActivitiesService {
     return this.httpClient.delete<boolean>(url);
    }
 
-   public UpdateNumberOfPlayers(activity: ActivitiesModel): Observable<boolean> {
-    const url = this.url + `/updateNumberOfPlayers`;
+   public UpdateNumberOfPlayers(idUser: number, activity: ActivitiesModel): Observable<boolean> {
+    const url = this.url + `/updateNumberOfPlayers/${idUser}`;
     return this.httpClient.put<boolean>(url, activity);
    }
 
+   public RemoveNumberOfPlayers(idUser: number, activity: ActivitiesModel): Observable<boolean> {
+    const url = this.url + `/removeNumberOfPlayers/${idUser}`;
+    return this.httpClient.put<boolean>(url, activity);
+   }
+   
    public UpdateEvent(idUser: number, activity: ActivitiesModel): Observable<boolean> {
     const url = this.url + `/updateEvent/${idUser}`;
     return this.httpClient.put<boolean>(url, activity);
    }
+
+   public GetEventTypes(): Observable<EventTypeModel[]> {
+    const url = this.url + `/getEventTypes`;
+    return this.httpClient.get<EventTypeModel[]>(url);
+   }
+
+   public GetEventCategories(): Observable<EventCategoryModel[]> {
+    const url = this.url + `/getEventCategories`;
+    return this.httpClient.get<EventCategoryModel[]>(url);
+   }
+
+   public GetEventSubCategories(): Observable<EventSubcategoryModel[]> {
+    const url = this.url + `/getEventSubcategories`;
+    return this.httpClient.get<EventSubcategoryModel[]>(url);
+   }
+
+   public GetAllEventsByUser(idUser: number): Observable<number[]> {
+    const url = this.url + `/getAllEventsByUser/${idUser}`;
+    return this.httpClient.get<number[]>(url);
+   }
+
 }

@@ -8,6 +8,7 @@ import { AdvertisementComponent } from './pages/advertisement/advertisement.comp
 import { AdvertisementListComponent } from './components/advertisement-list/advertisement-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { MaterialModule } from '../material/material.module';
     AdvertisementMainComponent,
     AdvertisementListComponent    
   ],
-  imports: [CommonModule, AdvertisementsRoutingModule, SharedModule, MaterialModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, AdvertisementsRoutingModule, SharedModule, TranslateModule, MaterialModule, FormsModule, ReactiveFormsModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AdvertisementsModule {}

@@ -35,6 +35,7 @@
       "@alerts/*": ["src/app/alerts/*"],
       "@advertisements/*": ["src/app/advertisements/*"],
       "@activities/*": ["src/app/activities/*"],
+      "@admin/*": ["src/app/admin/*"],
       "@assets/*": ["src/assets/i18n/*"],
       "@images/*": ["src/assets/images/*"]
     }

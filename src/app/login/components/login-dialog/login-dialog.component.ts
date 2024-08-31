@@ -102,11 +102,10 @@ export class LoginDialogComponent implements OnInit {
       this.loginSvc.logIn(userData).subscribe({
         next: (result: ResponseResult<LoginDto>) => {
           this.spinnerSvc.hide();
-          
           const res: LoginDto = result.result;
 
           if (res !== null) {
-            this.authSvc.SetSessionStorageToken(res.userName);
+            this.authSvc.SetSessionStorageToken(res);
             this.close(result.result);
           }
         },
@@ -132,7 +131,6 @@ export class LoginDialogComponent implements OnInit {
   }
 
   close(value: any | null): void {
-    debugger;
     this.dialogRef.close(value);
   }
 

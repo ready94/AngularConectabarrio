@@ -15,9 +15,7 @@ import { MsgService } from '@shared/services/msg.service';
 })
 export class MainNavbarComponent implements OnInit{
   isLogged: boolean = false;
-  loggedUser: string;
-
-  @Output() userLogged = new EventEmitter<LoginDto>();
+  userLog: LoginDto;
 
   constructor(
     private creationDialog: MatDialog,
@@ -26,10 +24,9 @@ export class MainNavbarComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
-    debugger;
     if (this.authSvc.isAuthenticated()) {
       this.isLogged = true;
-      this.loggedUser = this.authSvc.GetCurrentUserSession().userName;
+      this.userLog = this.authSvc.GetCurrentUserSession().user;
     }
   }
 
@@ -42,11 +39,10 @@ export class MainNavbarComponent implements OnInit{
     });
 
     dialog.afterClosed().subscribe((res: LoginDto) => {
-      debugger;
       if (res !== null) {
         this.isLogged = true;
-        this.loggedUser = res.userName;
-        this.userLogged.emit(res);
+        this.userLog = res;
+        window.location.reload();
       }
     });
   }
@@ -62,8 +58,9 @@ export class MainNavbarComponent implements OnInit{
 
   logOut(): void {
     this.isLogged = false;
-    this.loggedUser = '';
     this.authSvc.LogOut();
     this.msgSvc.ShowToastSuccess('LOGIN.LOGOUT_SUCCESS');
+    setTimeout(() => {window.location.reload();}, 1500);
+    
   }
 }

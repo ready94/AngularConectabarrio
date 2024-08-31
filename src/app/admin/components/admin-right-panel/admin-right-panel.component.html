@@ -1,0 +1,40 @@
+<div *ngIf="optionSelected">
+   
+    <ul>
+        @switch (optionSelected.idOption) {
+            @case (enumAdminOptions.USERS) {
+              <button (click)="createUser()">Crear</button>
+                <li *ngFor="let user of users">
+                  {{ user.name }} {{ user.surname}} - ID: {{ user.idUser}}
+                  <button (click)="updateUser(user)">Modificar</button>
+                  <button (click)="deleteUser(user)">Borrar</button>
+                </li>
+            }
+            @case (enumAdminOptions.COMPLAINTS) {
+              <button (click)="createComplaint()">Crear</button>
+              <li *ngFor="let complaint of complaints">
+                ID: {{ complaint.idComplaint}}
+                <button (click)="updateComplaint(complaint)">Modificar</button>
+                <button (click)="deleteComplaint(complaint)">Borrar</button>
+              </li>
+            }
+            @case (enumAdminOptions.EVENTS) {
+              <button (click)="createActivity()">Crear</button>
+              <li *ngFor="let activity of activities">
+                ID: {{ activity.idEvent}}
+                <button (click)="updateActivity(activity)">Modificar</button>
+                <button (click)="deleteActivity(activity)">Borrar</button>
+              </li>
+            }
+            @case (enumAdminOptions.NEWS) {
+              <button (click)="createNew()">Crear</button>
+              <li *ngFor="let newNew of news">
+                ID: {{ newNew.idNew }}
+                <button (click)="updateNew(newNew)">Modificar</button>
+                <button (click)="deleteNew(newNew)">Borrar</button>
+              </li>
+            }
+        }
+  
+    </ul>
+  </div>

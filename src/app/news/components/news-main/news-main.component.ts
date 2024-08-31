@@ -17,7 +17,10 @@ export class NewsMainComponent {
   }
 
   isLogged(): void{
-    this.logged = this.authSvc.isAuthenticated();
+    if (this.authSvc.isAuthenticated()) {
+      this.logged = true;
+      this.userLoggedIn = this.authSvc.GetCurrentUserSession().user;
+    }
   }
 
 

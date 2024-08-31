@@ -63,6 +63,13 @@ const routes: Routes = [
       import('@activities/activities.module').then((m) => m.ActivitiesModule),
     canActivate: [authGuard]
   },
+  {
+    path: 'admin',
+    data: { title: 'Administracion' },
+    loadChildren: () =>
+      import('@admin/admin.module').then((m) => m.AdminModule),
+    canActivate: [authGuard]
+  },
   { path: 'notFound404', component: Error404Component },
   { path: '**', redirectTo: 'home' },
 ];

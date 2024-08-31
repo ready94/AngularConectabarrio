@@ -6,6 +6,7 @@ import { StorageService } from './storage.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.development';
 import { CurrentUser } from '@shared/models/user.model';
+import { LoginDto } from '@login/models/loginDTO.model';
 
 @Injectable({
   providedIn: 'root',
@@ -75,8 +76,8 @@ export class AuthService {
     return result;
   }
 
-  SetSessionStorageToken(userName: string): void {
-    const userSession = {userName, token: 'barrioSession'};
+  SetSessionStorageToken(user: LoginDto): void {
+    const userSession = {user, token: 'barrioSession'};
     sessionStorage.setItem('currentUser', JSON.stringify(userSession));
   }
   

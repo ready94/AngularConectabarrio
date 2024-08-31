@@ -1,1 +1,77 @@
-<p>activities-new-form works!</p>
+<div class="card w-100 p-4">
+
+    <mat-card-header>
+        <img src="../../../../assets/images/header-dialog.png">
+    </mat-card-header>
+
+    <form *ngIf="formData" [formGroup]="formData">
+        
+        <div class="row"> 
+            <mat-form-field>
+                <mat-label>Selecciona tipo</mat-label>
+                <mat-select formControlName="idEventType">
+                    <mat-option *ngFor="let type of types" [value]="type.idEventType">
+                        {{type.eventType}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="row"> 
+            <mat-form-field>
+                <mat-label>Selecciona categoría</mat-label>
+                <mat-select formControlName="idEventCategory">
+                    <mat-option *ngFor="let cat of categories" [value]="cat.idEventCategory">
+                        {{cat.eventCategory}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="row"> 
+            <mat-form-field>
+                <mat-label>Selecciona subcategoría</mat-label>
+                <mat-select formControlName="idEventSubCategory">
+                    <mat-option *ngFor="let subcat of subcategories" [value]="subcat.idEventSubCategory">
+                        {{subcat.eventSubCategory}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+
+        <div class="row">
+            <mat-form-field class="input-form" appearance="outline">
+                <mat-label>Localización</mat-label>
+                <input matInput formControlName="location" />
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field class="input-form" appearance="outline">
+                <mat-label>Nº de personas máximo</mat-label>
+                <input matInput formControlName="maxPerson" type="number" />
+            </mat-form-field>
+        </div>
+
+        <mat-form-field>
+            <mat-label>Fecha del evento</mat-label>
+            <input matInput [matDatepicker]="start" placeholder="Selecciona una fecha:" formControlName="eventDate"/>
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="start"></mat-datepicker-toggle>
+            <mat-datepicker #start>
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancelar</button>
+                <button mat-raised-button matDatepickerApply>Seleccionar</button>
+              </mat-datepicker-actions>
+            </mat-datepicker>
+          </mat-form-field>
+
+
+        <div mat-dialog-actions class="py-1 float-end">
+            <button mat-raised-button color="primary" mat-dialog-close type="submit" class="py-1 float-end" (click)="register()">Crear evento</button>
+            <button mat-raised-button color="warn" mat-dialog-close class="py-1 float-end">Cerrar</button>
+        </div>
+    </form>
+
+</div>

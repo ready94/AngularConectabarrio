@@ -54,14 +54,22 @@
     "INFORMATION": "Información",
     "MODIFY": "Modificar",
     "LOG_IN": "Acceder",
-    "REGISTER": "Registro"
+    "REGISTER": "Registro",
+    "ACTIONS": "Acciones"
   },
   "SUCCESS": {
     "SUCCESS": "Éxito",
     "DELETE": "Los datos se han borrado correctamente",
     "UPDATE": "Los datos se han modificado correctamente",
     "SAVE": "Los datos se han guardado correctamente",
-    "PASSWORD_CHANGED": "La contraseña se ha modificado correctamente. Por favor, inicie sesión con la nueva contraseña."
+    "PASSWORD_CHANGED": "La contraseña se ha modificado correctamente. Por favor, inicie sesión con la nueva contraseña.",
+    "ACTIVITY_CREATED": "Actividad creada correctamente",
+    "ACTIVITY_UPDATED": "Actividad modificada correctamente",
+    "NEW_CREATED": "Noticia creada correctamente",
+    "NEW_UPDATED": "Noticia modificada correctamente",
+    "COMPLAINT_CREATED": "Denuncia creada correctamente",
+    "COPMLAINT_UPDATED": "Denuncia modificada correctamente"
+
   },
   "WARNING": {
     "WARNING": "Advertencia",
@@ -73,7 +81,13 @@
   },
   "ERROR": {
     "ERROR": "Error",
-    "PASSWORD_NOT_MATCH": "La contraseña no coincide."
+    "PASSWORD_NOT_MATCH": "La contraseña no coincide",
+    "ACTIVITY_CREATION": "Ha ocurrido un error al crear la actividad",
+    "ACTIVITY_UPDATE": "Ha ocurrido un error al modificar la actividad",
+    "NEW_CREATION": "Ha ocurrido un error al crear la noticia",
+    "NEW_UPDATE": "Ha ocurrido un error al modificar la noticia",
+    "COMPLAINT_CREATION": "Ha ocurrido un error al crear la denuncia",
+    "COPMLAINT_UPDATE": "Ha ocurrido un error al modificar la denuncia"
   },
   "CONFIRM": {
     "DISCARD_CHANGES": "¿Está seguro/a de que desea descartar los cambios?",
@@ -83,6 +97,7 @@
   },
   "USER": {
     "CREATED_SUCCESS": "Usuario creado correctamente.",
+    "UPDATED_SUCCESS": "Usuario modificado correctamente.",
     "CREATED_ERROR": "Se ha producido un error al crear el usuario.",
     "ALREADY_EXISTS_EMAIL": "El email introducido ya está registrado.",
     "ALREADY_EXISTS_USERNAME": "El nombre de usuario ya está registrado",
@@ -95,6 +110,10 @@
       "ROLE": "Rol de usuario",
       "REPEAT_PASSWORD": "Repetir contraseña",
       "FORGOT_PASSWORD": "¿Contraseña olvidada?"
+    },
+    "ROLE": {
+      "ADMINISTRATOR": "Administrador",
+      "USER": "Usuario"
     }
   },
   "GENERAL": {
@@ -120,6 +139,7 @@
   },
   "NEWS": {
     "TITLE": "Título",
+    "CATEGORY_TYPE": "Categoría",
     "DESCRIPTION": "Descripción",
     "INIT_DATE": "Fecha de inicio",
     "END_DATE": "Fecha de fin",
@@ -127,19 +147,40 @@
       "SELECT": "Selecciona categoría",
       "INFO": "Informativa",
       "SOCIAL": "Social"
-    }
+    }, 
+    "GOOGLE": "Noticias de Google",
+    "USERS": "Noticias de usuarios"
   },
   "COMPLAINTS": {
     "TITLE": "Título",
-    "TYPE": "Tipo"
+    "TYPE": "Tipo",
+    "PRIORITY": "Prioridad",
+    "DESCRIPTION": "Descripción",
+    "TYPES": {
+      "INCIDENT": "Incidente",
+      "SOCIAL": "Social",
+      "REQUEST": "Petición"
+    },
+    "TYPE_PRIORITY": {
+      "LOW": "Baja",
+      "MEDIUM": "Media",
+      "HIGH": "Alta",
+      "URGENT": "Urgente"
+    },
+    "MY_COMPLAINTS": "Mis denuncias",
+    "USERS_COMPLAINTS": "Denuncias de los usuarios"
   },
   "ACTIVITY": {
+    "TITLE": "Lista de eventos disponibles actualmente",
     "TYPE" : "Tipo",
     "CATEGORY": "Categoría",
     "SUBCATEGORY": "Subcategoría",
     "LOCATION": "Localización",
     "MAX_PERSON": "Nº máximo personas",
     "ACTUAL_PERSON": "Nº actual personas",
+    "DATE": "Fecha",
+    "GET_IN": "Apuntarse",
+    "GET_OUT": "Desapuntarse",
     "ACTTIVITY_TYPE": {
       "FRIENDLY": "Amistoso",
       "TOURNAMENT": "Torneo"

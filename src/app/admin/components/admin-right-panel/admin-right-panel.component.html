@@ -7,7 +7,7 @@
                   {{ user.name }} {{ user.surname}} - ID: {{ user.idUser}}
                   <div class="item-actions">
                     <button (click)="updateUser(user)">{{ "ACTIONS.MODIFY" | translate }}</button>
-                    <button (click)="deleteUser(user)">Borrar</button>
+                    <button (click)="deleteUser(user)">{{ "ACTIONS.DELETE" | translate }}</button>
                   </div>
                 </div>
                 
@@ -17,10 +17,10 @@
           @case (enumAdminOptions.COMPLAINTS) {
             <div *ngFor="let complaint of complaints" class="list-item">
               <div class="item-content">
-                ID: {{ complaint.idComplaint}}
+                ID: {{ complaint.idComplaint}} - {{ "COMPLAINTS.TITLE" | translate }}: {{ complaint.title }} - {{ "COMPLAINTS.TYPE" | translate }}: {{ complaint.complaintType | translate }} - {{ "COMPLAINTS.PRIORITY" | translate }}: {{ complaint.complaintPriority | translate}} 
                 <div class="item-actions">
                   <button (click)="updateComplaint(complaint)">{{ "ACTIONS.MODIFY" | translate }}</button>
-                  <button (click)="deleteComplaint(complaint)">Borrar</button>
+                  <button (click)="deleteComplaint(complaint)">{{ "ACTIONS.DELETE" | translate }}</button>
                 </div>
               </div>
               
@@ -34,7 +34,7 @@
                 {{ "ACTIVITY.CATEGORY" | translate }}: {{ activity.eventCategory | translate}} - {{ "ACTIVITY.SUBCATEGORY" | translate }}: {{ activity.eventSubcategory | translate}}
                 <div class="item-actions">
                   <button (click)="updateActivity(activity)">{{ "ACTIONS.MODIFY" | translate }}</button>
-                  <button (click)="deleteActivity(activity)">Borrar</button>
+                  <button (click)="deleteActivity(activity)">{{ "ACTIONS.DELETE" | translate }}</button>
                 </div>
               </div>
             </div>
@@ -43,10 +43,10 @@
           @case (enumAdminOptions.NEWS) {           
             <div *ngFor="let newNew of news" class="list-item">
               <div class="item-content">
-                ID: {{ newNew.idNew }} - {{ "GENERAL.TITLE" | translate}}: {{ newNew.name }} - {{ "NEWS.CATEGORY.TITLE" | translate }}: {{ newNew.category | translate}}
+                ID: {{ newNew.idNew }} - {{ "GENERAL.TITLE" | translate}}: {{ newNew.name }} - {{ "NEWS.CATEGORY_TYPE" | translate }}: {{ newNew.category | translate}}
                 <div class="item-actions">
                   <button (click)="updateNew(newNew)">{{ "ACTIONS.MODIFY" | translate }}</button>
-                  <button (click)="deleteNew(newNew)">Borrar</button>
+                  <button (click)="deleteNew(newNew)">{{ "ACTIONS.DELETE" | translate }}</button>
                 </div>
               </div>              
             </div>

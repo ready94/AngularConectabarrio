@@ -1,0 +1,227 @@
+{
+    "LOGIN": {
+      "LOGOUT_SUCCESS": "Logged out successfully",
+      "ACTIONS": {
+        "FORGOT_PASSWORD": "Forgot password",
+        "REQUEST_CHANGE": "Change password",
+        "ERROR": {
+          "WRONG_DATA": "The username or password is incorrect",
+          "WRONG_PASSWORD": "Incorrect password",
+          "WRONG_USERNAME": "Incorrect username",
+          "LOGIN": "An error occurred while logging in",
+          "LOCKED": "User locked",
+          "GETTING_IP": "An error occurred while retrieving the user's IP address",
+          "INVALID_FORMAT": "The password must contain at least 8 characters: 1 uppercase, 1 lowercase, 1 number required, and 1 optional special character",
+          "INVALID_EMAIL": "The email must be in the format example@domain.com"
+        },
+        "SEND_LINK_CHANGE_PASSWORD": "You will soon receive a link in your email to change your password"
+      }
+    },
+    "ACCEPT": {
+      "ACCEPT": "Accept"
+    },
+    "LIBSHARED": {
+      "ACCEPT": "Accept",
+      "CANCEL": "Cancel"
+    },
+    "ACTIONS": {
+      "ACCEPT": "Accept",
+      "SELECT": "Select",
+      "CANCEL": "Cancel",
+      "CLOSE": "Close",
+      "EXIT": "Exit",
+      "SEND": "Send",
+      "EDIT": "Edit",
+      "DELETE": "Delete",
+      "CREATE": "Create",
+      "ADD": "Add",
+      "REPLACE": "Replace",
+      "FILTER": "Filter",
+      "VIEW": "View",
+      "LOAD": "Load",
+      "NEW": "New",
+      "SAVE": "Save",
+      "SAVE_AND_CONTINUE": "Save and continue",
+      "SAVE_AND_CLOSE": "Save and close",
+      "SEARCH": "Search",
+      "SHARE": "Share",
+      "DELETE_SEARCH": "Delete search",
+      "DELETE_FILTERS": "Delete filters",
+      "CHANGE_LANGUAGE": "Change language",
+      "MARK_ALL": "Mark all",
+      "UNMARK_ALL": "Unmark all",
+      "CONTINUE": "Continue",
+      "INFORMATION": "Information",
+      "MODIFY": "Modify",
+      "LOG_IN": "Log in",
+      "REGISTER": "Register",
+      "ACTIONS": "Actions"
+    },
+    "SUCCESS": {
+      "SUCCESS": "Success",
+      "DELETE": "Data has been deleted successfully",
+      "UPDATE": "Data has been updated successfully",
+      "SAVE": "Data has been saved successfully",
+      "PASSWORD_CHANGED": "Password has been changed successfully. Please log in with the new password.",
+      "ACTIVITY_CREATED": "Activity created successfully",
+      "ACTIVITY_UPDATED": "Activity updated successfully",
+      "NEW_CREATED": "News created successfully",
+      "NEW_UPDATED": "News updated successfully",
+      "COMPLAINT_CREATED": "Complaint created successfully",
+      "COPMLAINT_UPDATED": "Complaint updated successfully"
+    },
+    "WARNING": {
+      "WARNING": "Warning",
+      "UPDATING_DATA": "Some data needs to be modified first",
+      "NO_CHANGES": "No changes pending",
+      "FORM_ERROR": "The form is not valid",
+      "NO_CHECKED_SEARCH_OPTIONS": "You must select at least one search option",
+      "REQUIRED_FIELDS": "You must fill in the required fields"
+    },
+    "ERROR": {
+      "ERROR": "Error",
+      "PASSWORD_NOT_MATCH": "Passwords do not match",
+      "ACTIVITY_CREATION": "An error occurred while creating the activity",
+      "ACTIVITY_UPDATE": "An error occurred while updating the activity",
+      "NEW_CREATION": "An error occurred while creating the news",
+      "NEW_UPDATE": "An error occurred while updating the news",
+      "COMPLAINT_CREATION": "An error occurred while creating the complaint",
+      "COPMLAINT_UPDATE": "An error occurred while updating the complaint"
+    },
+    "CONFIRM": {
+      "DISCARD_CHANGES": "Are you sure you want to discard the changes?",
+      "DELETE": "Are you sure you want to delete the item?",
+      "UPDATE": "Are you sure you want to update the changes?",
+      "CREATE_USER": "Are you sure you want to create the account?"
+    },
+    "USER": {
+      "CREATED_SUCCESS": "User created successfully.",
+      "UPDATED_SUCCESS": "User updated successfully.",
+      "CREATED_ERROR": "An error occurred while creating the user.",
+      "ALREADY_EXISTS_EMAIL": "The entered email is already registered.",
+      "ALREADY_EXISTS_USERNAME": "The username is already registered",
+      "DATA": {
+        "NAME": "Name",
+        "SURNAME": "Surname",
+        "USERNAME": "Username",
+        "PASSWORD": "Password",
+        "EMAIL": "Email",
+        "ROLE": "User role",
+        "REPEAT_PASSWORD": "Repeat password",
+        "FORGOT_PASSWORD": "Forgot password?"
+      },
+      "ROLE": {
+        "ADMINISTRATOR": "Administrator",
+        "USER": "User"
+      }
+    },
+    "GENERAL": {
+      "READ_MORE": "Read more",
+      "TITLE": "Title",
+      "CREATE": "Create",
+      "CLOSE": "Close",
+      "SAVE": "Save"
+    },
+    "OPTIONS": {
+      "HOME": "Home",
+      "NEWS": "News",
+      "EVENTS": "Activities / Events",
+      "COMPLAINTS": "Complaints",
+      "CALENDAR": "Calendar",
+      "ADMINISTRATION": "Administration"
+    },
+    "ADMIN": {
+      "USERS": "Users",
+      "NEWS": "News",
+      "COMPLAINTS": "Complaints",
+      "EVENTS": "Activities / Events"
+    },
+    "NEWS": {
+      "TITLE": "Title",
+      "CATEGORY_TYPE": "Category",
+      "DESCRIPTION": "Description",
+      "INIT_DATE": "Start date",
+      "END_DATE": "End date",
+      "CATEGORY": {
+        "SELECT": "Select category",
+        "INFO": "Informative",
+        "SOCIAL": "Social"
+      },
+      "GOOGLE": "Google News",
+      "USERS": "User news"
+    },
+    "COMPLAINTS": {
+      "TITLE": "Title",
+      "TYPE": "Type",
+      "PRIORITY": "Priority",
+      "DESCRIPTION": "Description",
+      "TYPES": {
+        "INCIDENT": "Incident",
+        "SOCIAL": "Social",
+        "REQUEST": "Request"
+      },
+      "TYPE_PRIORITY": {
+        "LOW": "Low",
+        "MEDIUM": "Medium",
+        "HIGH": "High",
+        "URGENT": "Urgent"
+      },
+      "MY_COMPLAINTS": "My complaints",
+      "USERS_COMPLAINTS": "User complaints"
+    },
+    "ACTIVITY": {
+      "TITLE": "List of currently available events",
+      "TYPE": "Type",
+      "CATEGORY": "Category",
+      "SUBCATEGORY": "Subcategory",
+      "LOCATION": "Location",
+      "MAX_PERSON": "Max number of people",
+      "ACTUAL_PERSON": "Current number of people",
+      "DATE": "Date",
+      "GET_IN": "Join",
+      "GET_OUT": "Leave",
+      "ACTTIVITY_TYPE": {
+        "FRIENDLY": "Friendly",
+        "TOURNAMENT": "Tournament"
+      }
+    },
+    "EVENT_CATEGORY": {
+      "SPORT": "Sport",
+      "VIDEOGAME": "Videogame",
+      "TABLETOP": "Tabletop game",
+      "MUSIC": "Music",
+      "COOKING": "Cooking"
+    },
+    "EVENT_SUBCATEGORY": {
+      "FOOTBALL": "Football",
+      "BASKET": "Basketball",
+      "TENNIS": "Tennis",
+      "PADEL": "Paddle",
+      "VOLLEYBALL": "Volleyball",
+      "CALL OF DUTY": "Call of Duty",
+      "EA SPORTS FC": "EA SPORTS FC",
+      "RAINBOW SIX SIEGE": "Rainbow Six Siege",
+      "VALORANT": "Valorant",
+      "LEAGUE OF LEGENDS": "League of Legends",
+      "CATAN": "Catan",
+      "MUS": "Mus",
+      "CARCASSONNE": "Carcassonne",
+      "ZOMBICIDE": "Zombicide",
+      "JUNGLE SPEED": "Jungle Speed",
+      "JAM SESSION": "Jam session",
+      "CONFECTIONERY": "Confectionery",
+      "ITALIAN": "Italian",
+      "MEDITERRANEAN": "Mediterranean",
+      "HINDU": "Indian"
+    },
+    "HOME": {
+      "INTRO": {
+        "PARAGRAPH_1": "Welcome to ConectaBarrio! Our platform is designed to promote citizen collaboration and improve life in Barrio del Pilar.",
+        "PARAGRAPH_2": "At ConectaBarrio, we believe in the power of community. Here you can stay informed with the latest news in your area and keep up with everything happening around you.",
+        "PARAGRAPH_3": "Have you found a problem in your neighborhood? Our platform allows you to create public complaints and reports. For example, if you see a pothole in the road, you can inform other users to be careful, as well as notify authorities for prompt repair.",
+        "PARAGRAPH_4": "In addition, at ConectaBarrio, you can create and participate in local events. From sports activities to video game tournaments, there's something for everyone. Join existing events or create your own to connect with people who share similar interests.",
+        "PARAGRAPH_5": "You can also join interest groups like music, reading, and more. These groups allow you to connect with other community members who share your passions, organize meetups, and enjoy your hobbies together.",
+        "PARAGRAPH_6": "Join ConectaBarrio today and be part of the change! Together we can build a more united, informed, and active neighborhood."
+      }
+    }
+  }

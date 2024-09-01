@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import es_ES from '@assets/es.json';
-import en_GB from '@assets/en-GB.json';
+import en_GB from '@assets/en.json';
 
 @Injectable({
   providedIn: 'root'

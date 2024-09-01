@@ -1,80 +1,59 @@
 <app-main-navbar></app-main-navbar>
 <div class="container mt-5">
-    <h1 class="mb-4">Lista de eventos disponibles actualmente</h1>
-    <!-- <ul class="list-group">
-
-        @if(eventsCompleteList.length > 0){
-            
-            <li class="list-group-item" *ngFor="let activity of eventsCompleteList"> 
-                <div class="d-flex justify-content-between align-items-center">
-                Lugar: {{ activity.location }} - Categoría: {{ activity.eventCategory }} - Subcategoría: {{ activity.eventSubCategory }} - Fecha del evento: {{ activity.eventDate | date:"dd/MM/yyyy HH:mm" }}
-                - Personas apuntadas: {{ activity.actualPerson}} - Máximo de personas: {{ activity.maxPerson }}
-                <button class="btn btn-primary" (click)="enter(activity)">Apuntarse</button> 
-                </div>
-            </li>
-         
-        }@else {
-            <li class="list-group-item" *ngFor="let activity of eventsCompleteList"> 
-                <div class="d-flex justify-content-between align-items-center">
-                    <span> NO HAY EVENTOS DISPONIBLES </span>
-                </div>
-            </li>
-            
-        }
-    </ul> -->
-    <div class="mat-elevation-z8">
+    <h1 class="mb-4">{{ "ACTIVITY.TITLE" | translate}}</h1>
+     <div class="mat-elevation-z8">
         <div class="table-container">
           <mat-table [dataSource]="dataSource" matSort class="mat-table">
             <!-- ID Column -->
             <ng-container matColumnDef="eventType">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.eventType}} </mat-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "ACTIVITY.TYPE" | translate}} </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.eventType | translate}} </mat-cell>
             </ng-container>
       
             <!-- Nombre Column -->
             <ng-container matColumnDef="location">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Localización </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "ACTIVITY.LOCATION" | translate}}</mat-header-cell>
               <mat-cell *matCellDef="let element"> {{element.location}}</mat-cell>
             </ng-container>
       
             <!-- Descripción Column -->
             <ng-container matColumnDef="category">
-              <mat-header-cell *matHeaderCellDef> Categoría </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.eventCategory}} </mat-cell>
+              <mat-header-cell *matHeaderCellDef> {{ "ACTIVITY.CATEGORY" | translate}} </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.eventCategory | translate}} </mat-cell>
             </ng-container>
       
             <ng-container matColumnDef="subcategory">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Subcategoría </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.eventSubCategory}} </mat-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "ACTIVITY.SUBCATEGORY" | translate}}</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.eventSubCategory | translate}} </mat-cell>
               </ng-container>
         
             <!-- Nombre Column -->
             <ng-container matColumnDef="eventDate">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "ACTIVITY.DATE" | translate}} </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.eventDate | date:"dd/MM/yyyy HH:mm"}}</mat-cell>
             </ng-container>
         
             <!-- Descripción Column -->
             <ng-container matColumnDef="actualPerson">
-                <mat-header-cell *matHeaderCellDef> Apuntados </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> {{ "ACTIVITY.ACTUAL_PERSON" | translate}} </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.actualPerson}} </mat-cell>
             </ng-container>
         
             <!-- Descripción Column -->
             <ng-container matColumnDef="maxPerson">
-                <mat-header-cell *matHeaderCellDef> Nº Máximo </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> {{ "ACTIVITY.MAX_PERSON" | translate}} </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.maxPerson}} </mat-cell>
             </ng-container>
                     
             <ng-container matColumnDef="actions">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "ACTIONS.ACTIONS" | translate}} </mat-header-cell>
                 <mat-cell *matCellDef="let element"> 
 
                     @if(element.alreadyIn ){
-                        <button *ngIf="!element.isTheCreationUser" class="btn btn-primary" (click)="exit(element)">Desapuntarse</button>
+                        <button *ngIf="!element.isTheCreationUser" class="btn btn-primary" (click)="exit(element)">{{ "ACTIVITY.GET_OUT" | translate}}</button>
  
                     }@else {
-                        <button *ngIf="!element.isTheCreationUser" class="btn btn-primary" (click)="enter(element)">Apuntarse</button>
+                        <button *ngIf="!element.isTheCreationUser" class="btn btn-primary" (click)="enter(element)">{{ "ACTIVITY.GET_IN" | translate}}</button>
                     }
                 </mat-cell>
             </ng-container>

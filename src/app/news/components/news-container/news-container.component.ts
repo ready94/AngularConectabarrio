@@ -10,6 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NewsFormComponent } from '../news-form/news-form.component';
 import { LoginDto } from '@login/models/loginDTO.model';
 import { AuthService } from '@shared/services/auth.service';
+import { NewDescriptionDialogComponent } from '../new-description-dialog/new-description-dialog.component';
 
 @Component({
   selector: 'app-news-container',
@@ -98,12 +99,21 @@ export class NewsContainerComponent implements OnInit {
     }
   }
 
-  update(item: any) {
+  updateNew(item: NewsModel) {
 debugger;
   }
 
-  delete(item: any){
+  deleteNew(item: NewsModel){
 debugger;
+  }
+
+  openDescription(item: NewsModel){
+    const dialog = this.creationDialog.open(NewDescriptionDialogComponent, {
+      width: '30%',
+      height: '70%',
+      autoFocus: false,
+      data: { item: item },
+    });
   }
 
 }

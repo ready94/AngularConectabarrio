@@ -12,4 +12,7 @@ export interface ComplaintModel {
     modificationUser: number | null;
     modificationDate: Date | null;
     active: boolean;
+
+    complaintPriority: string | null;
+    complaintType: string | null;
 }

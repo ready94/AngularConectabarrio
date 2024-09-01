@@ -9,17 +9,17 @@ import { SharedModule } from '../shared/shared.module';
 import { NewsContainerComponent } from './components/news-container/news-container.component';
 import { NewsFormComponent } from './components/news-form/news-form.component';
 import { NewsMainComponent } from './components/news-main/news-main.component';
-import { NewsVisualizatorComponent } from './components/news-visualizator/news-visualizator.component';
 import { NewsRoutingModule } from './news-routing.module';
 import { NewsComponent } from './pages/news/news.component';
+import { NewDescriptionDialogComponent } from './components/new-description-dialog/new-description-dialog.component';
 
 @NgModule({
   declarations: [
     NewsComponent,
     NewsMainComponent,
     NewsContainerComponent,
-    NewsVisualizatorComponent,
-    NewsFormComponent
+    NewsFormComponent,
+    NewDescriptionDialogComponent
   ],
   imports: [
     CommonModule,

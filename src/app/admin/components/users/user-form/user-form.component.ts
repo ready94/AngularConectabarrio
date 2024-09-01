@@ -27,23 +27,19 @@ export class AdminUserFormComponent {
 
   userUpdate: UserModel;
   userRoles: UserRolesDTO[];
+  idAdmin: number;
 
   constructor(
-    private creationDialog: MatDialog,
     private formBuilder: UntypedFormBuilder,
     private msgSvc: MsgService,
-    private router: Router,
-    private route: ActivatedRoute,
     private spinnerSvc: SpinnerService,
-    private storageSvc: StorageService,
-    private authSvc: AuthService,
     private userSvc: UserService,
-    private translateSvc: TranslateService,
-    private mainConfigSvc: MainConfigurationService,
     @Inject(MAT_DIALOG_DATA) public data
   ) {
-    if(data)
-      this.userUpdate = data;
+    if(data.user)
+      this.userUpdate = data.user;
+    if(data.idAdmin)
+      this.idAdmin = data.idAdmin;
   }
 
   ngOnInit(): void {

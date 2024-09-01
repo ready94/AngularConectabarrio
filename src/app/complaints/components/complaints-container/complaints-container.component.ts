@@ -7,6 +7,7 @@ import { AuthService } from '@shared/services/auth.service';
 import { ComplaintFormComponent } from '../complaint-form/complaint-form.component';
 import { ComplaintModel } from '@complaints/models/complaint.model';
 import { UserService } from '@login/services/user.service';
+import { ComplaintDescriptionDialogComponent } from '../complaint-description-dialog/complaint-description-dialog.component';
 
 @Component({
   selector: 'app-complaints-container',
@@ -90,10 +91,19 @@ export class ComplaintsContainerComponent implements OnInit {
     }
   }
 
-  update(item: any) {
+  updateComplaint(item: any) {
   }
     
-  delete(item: any){
+  deleteComplaint(item: any){
   }
     
+  openDescription(item: ComplaintModel): void{
+    const dialog = this.creationDialog.open(ComplaintDescriptionDialogComponent, {
+      width: '30%',
+      height: '70%',
+      autoFocus: false,
+      data: { item: item },
+    });
+    
+  }
 }

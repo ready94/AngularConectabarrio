@@ -7,6 +7,7 @@ import { MainNavbarComponent } from './components/main-navbar/main-navbar.compon
 import { MenuLateralComponent } from './components/menu-lateral/menu-lateral.component';
 import { CustomSpinnerComponent } from './components/custom-spinner/custom-spinner.component';
 import { Error404Component } from '../error404/error404.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { Error404Component } from '../error404/error404.component';
   imports: [
     // BrowserAnimationsModule,
     CommonModule,
+    TranslateModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,

@@ -1,9 +1,42 @@
-.container{
-
-  height: 100vh;
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
   width: 100%;
-  max-height: 900px;
-  overflow-y: auto;
-  padding-top: 5%;
+  font-family: Arial, sans-serif;
+}
 
+#main-container {
+  margin: 0;
+  padding: 0;
+  padding-top: 5%;
+  width: 95vw;
+}
+
+.container{
+  display: flex;
+  height: 100vh;
+  width: 95vw;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.left-panel {
+  flex: 0 0 250px;
+  background-color: #f8f9fa; 
+  border-right: 2px solid #e0e0e0;
+  padding: 20px; 
+  overflow-y: auto; 
+  box-sizing: border-box;
+  margin-right: 20px; 
+}
+
+.right-panel {
+  flex: 1;
+  padding: 20px; 
+  height: auto;
+  width: 90vw;
+  margin-left: 5%;
+  overflow-y: auto; 
+  box-sizing: border-box;
 }

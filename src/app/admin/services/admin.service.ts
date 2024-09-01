@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ComplaintModel } from '@complaints/models/complaint.model';
 import { NewUserModel } from '@login/models/new-user.model';
-import { UserModel } from '@login/models/user.mode';
+import { UserModel } from '@login/models/user.model';
 import { NewsModel } from '@news/models/news.model';
 import { ResponseResult } from '@shared/models/response-result.model';
 
@@ -41,8 +41,8 @@ export class AdminService {
     return this.httpClient.post<boolean>(url, userModel);
   }
 
-  CreateUser(user: NewUserModel): Observable<ResponseResult<boolean>> {
-    const url = this.url + `/createUser`;
+  CreateUser(user: NewUserModel, idAdmin: number): Observable<ResponseResult<boolean>> {
+    const url = this.url + `/createUser/${idAdmin}`;
     return this.httpClient.get<ResponseResult<boolean>>(url);
   }
 
@@ -57,7 +57,7 @@ export class AdminService {
   }
 
   GetNews(): Observable<NewsModel[]> {
-    const url = this.url + `/getNews`;
+    const url = this.url + `/getAllNews`;
     return this.httpClient.get<NewsModel[]>(url);
   }
 
@@ -77,7 +77,7 @@ export class AdminService {
   }
 
   GetActivities(): Observable<ActivitiesModel[]> {
-    const url = this.url + `/getActivities`;
+    const url = this.url + `/getAllActivities`;
     return this.httpClient.get<ActivitiesModel[]>(url);
   }
 
@@ -97,7 +97,7 @@ export class AdminService {
   }
 
   GetComplaints(): Observable<ComplaintModel[]> {
-    const url = this.url + `/getComplaints`;
+    const url = this.url + `/getAllComplaints`;
     return this.httpClient.get<ComplaintModel[]>(url);
   }
 

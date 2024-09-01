@@ -8,59 +8,58 @@
         
         <div class="row"> 
             <mat-form-field>
-                <mat-label>Selecciona categoría</mat-label>
+                <mat-label>{{ "NEWS.CATEGORY.SELECT" | translate }}</mat-label>
                 <mat-select formControlName="idCategory">
                     <mat-option *ngFor="let cat of categories" [value]="cat.key">
-                        {{cat.value}}
+                        {{cat.value | translate}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
 
-
         <div class="row">
             <mat-form-field class="input-form" appearance="outline">
-                <mat-label>Título</mat-label>
+                <mat-label>{{ "NEWS.TITLE" | translate }}</mat-label>
                 <input matInput formControlName="name" />
             </mat-form-field>
         </div>
 
         <div class="row">
             <mat-form-field class="input-form" appearance="outline">
-                <mat-label>Descripción</mat-label>
+                <mat-label>{{ "NEWS.DESCRIPTION" | translate }}</mat-label>
                 <input matInput formControlName="description" />
             </mat-form-field>
         </div>
 
         <mat-form-field>
-            <mat-label>Fecha de inicio</mat-label>
-            <input matInput [matDatepicker]="start" placeholder="Selecciona una fecha de inicio:" formControlName="startDate"/>
+            <mat-label>{{ "NEWS.INIT_DATE" | translate }}</mat-label>
+            <input matInput [matDatepicker]="start" formControlName="startDate"/>
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="start"></mat-datepicker-toggle>
             <mat-datepicker #start>
               <mat-datepicker-actions>
-                <button mat-button matDatepickerCancel>Cancelar</button>
-                <button mat-raised-button matDatepickerApply>Seleccionar</button>
+                <button mat-button matDatepickerCancel>{{ "ACTIONS.CANCEL" | translate }}</button>
+                <button mat-raised-button matDatepickerApply>{{ "ACTIONS.SELECT" | translate }}</button>
               </mat-datepicker-actions>
             </mat-datepicker>
           </mat-form-field>
 
           <mat-form-field>
-            <mat-label>Fecha de fin</mat-label>
+            <mat-label>{{ "NEWS.END_DATE" | translate }}</mat-label>
             <input matInput [matDatepicker]="end" formControlName="endDate"/>
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="end"></mat-datepicker-toggle>
             <mat-datepicker #end>
               <mat-datepicker-actions>
-                <button mat-button matDatepickerCancel>Cancelar</button>
-                <button mat-raised-button matDatepickerApply>Seleccionar</button>
+                <button mat-button matDatepickerCancel>{{ "ACTIONS.CANCEL" | translate }}</button>
+                <button mat-raised-button matDatepickerApply>{{ "ACTIONS.SELECT" | translate }}</button>
               </mat-datepicker-actions>
             </mat-datepicker>
           </mat-form-field>
 
         <div mat-dialog-actions class="py-1 float-end">
-            <button mat-raised-button color="primary" mat-dialog-close type="submit" class="py-1 float-end" (click)="register()">Crear noticia</button>
-            <button mat-raised-button color="warn" mat-dialog-close class="py-1 float-end">Cerrar</button>
+            <button mat-raised-button color="primary" mat-dialog-close type="submit" class="py-1 float-end" (click)="register()">{{ "ACTIONS.CREATE" | translate }}</button>
+            <button mat-raised-button color="warn" mat-dialog-close class="py-1 float-end">{{ "ACTIONS.CLOSE" | translate }}</button>
         </div>
     </form>
 

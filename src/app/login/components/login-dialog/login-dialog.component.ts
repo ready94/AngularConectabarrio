@@ -107,6 +107,9 @@ export class LoginDialogComponent implements OnInit {
           if (res !== null) {
             this.authSvc.SetSessionStorageToken(res);
             this.close(result.result);
+          }else{
+            const msg: string = this.translateSvc.instant("LOGIN.ACTIONS.ERROR.WRONG_DATA");
+            this.msgSvc.ShowAlertError('', msg);
           }
         },
         error: (error: string) => {
@@ -148,9 +151,8 @@ export class LoginDialogComponent implements OnInit {
     dialog.afterClosed().subscribe({
       next: (res: boolean) => {
         if (res) {
-          setTimeout(() => {
-            window.location.reload();
-          }, 1500);
+          this.msgSvc.ShowAlertSuccess("SUCCESS.SUCCESS", "SUCCESS.PASSWORD_CHANGED");
+          this.close(null);
         }
       },
     });

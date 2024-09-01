@@ -5,17 +5,16 @@
         <div class="user-info align-items-center">
             <span class="user"> {{userLog.userName}} </span>
             <button mat-raised-button class="btn-theme mx-3" style="float: right;" (click)="logOut()">
-                <mat-icon>logout</mat-icon>Salir</button>
+                <mat-icon>logout</mat-icon>{{ "ACTIONS.EXIT" | translate }}</button>
         </div>
     }
     @else {
         <div class="float-end py-1 user-info">
             <button mat-raised-button class="btn-theme" (click)="login()">
-                <mat-icon>login</mat-icon>Acceder</button>
+                <mat-icon>login</mat-icon>{{ "ACTIONS.LOG_IN" | translate }}</button>
             <button mat-raised-button class="btn-theme mx-2" (click)="register()">
-                <mat-icon>app_registration</mat-icon>Registro</button>
+                <mat-icon>app_registration</mat-icon>{{ "ACTIONS.REGISTER" | translate }}</button>
         </div>
-    }
-    
+    }    
     
 </div> 

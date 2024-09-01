@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserRolesDTO } from '@login/models/user-roles-dto.model';
+import { UserModel } from '@login/models/user.model';
 import { UserService } from '@login/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ResponseResult } from '@shared/models/response-result.model';
@@ -12,17 +14,20 @@ import { SpinnerService } from '@shared/services/spinner.service';
 import { StorageService } from '@shared/services/storage.service';
 
 @Component({
-  selector: 'app-register-new-user',
-  templateUrl: './register-new-user.component.html',
-  styleUrl: './register-new-user.component.scss',
+  selector: 'app-user-form',
+  templateUrl: './user-form.component.html',
+  styleUrl: './user-form.component.scss'
 })
-export class RegisterNewUserComponent {
+export class AdminUserFormComponent {
   formData: FormGroup;
   hide = true;
   disabled = false;
   returnUrl: string;
   strongPasswordRegx: RegExp = /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
-  
+
+  userUpdate: UserModel;
+  userRoles: UserRolesDTO[];
+
   constructor(
     private creationDialog: MatDialog,
     private formBuilder: UntypedFormBuilder,
@@ -34,11 +39,16 @@ export class RegisterNewUserComponent {
     private authSvc: AuthService,
     private userSvc: UserService,
     private translateSvc: TranslateService,
-    private mainConfigSvc: MainConfigurationService
-  ) {}
+    private mainConfigSvc: MainConfigurationService,
+    @Inject(MAT_DIALOG_DATA) public data
+  ) {
+    if(data)
+      this.userUpdate = data;
+  }
 
   ngOnInit(): void {
     this.spinnerSvc.show();
+    this.getUserRoles();
     this.createForm();
   }
 
@@ -50,6 +60,7 @@ export class RegisterNewUserComponent {
       password: [null, [Validators.required, Validators.pattern(this.strongPasswordRegx)]],
       repeatPassword: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      role: [null]
     });
     this.spinnerSvc.hide();
   }
@@ -60,21 +71,27 @@ export class RegisterNewUserComponent {
       const repeatPassword = this.formData.get('repeatPassword').value;
 
       if (password !== repeatPassword) {
-        const msg: string = this.translateSvc.instant('ERROR.PASSWORD_NOT_MATCH');
-        this.msgSvc.showAlertWarning(msg);
+        this.msgSvc.showAlertWarning('ERROR.PASSWORD_NOT_MATCH');
       } else {
         this.userSvc.CreateUser(this.formData.value).subscribe({
           next: (res: ResponseResult<boolean>) => {
-            const msg: string = this.translateSvc.instant(res.msg);
             if (res.success) {
-              this.msgSvc.showAlertSuccess(msg);
+              this.msgSvc.showAlertSuccess(res.msg);
             } else {
-              this.msgSvc.showAlertError(msg);
+              this.msgSvc.showAlertError(res.msg);
             }
           },
         });
       }
     }
+  }
+
+  getUserRoles(): void {
+    this.userSvc.GetUserRoles().subscribe({
+      next: (res: UserRolesDTO[]) => {
+        this.userRoles = res;
+      }
+    })
   }
 
 }

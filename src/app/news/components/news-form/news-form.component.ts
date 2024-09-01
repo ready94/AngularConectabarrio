@@ -33,8 +33,8 @@ export class NewsFormComponent {
   idUser: number;
 
   categories: any = [
-    { key: EnumNewsCategory.INFO, value: 'INFORMATIVAS' },
-    { key: EnumNewsCategory.SOCIAL, value: 'SOCIALES' }
+    { key: EnumNewsCategory.INFO, value: 'NEWS.CATEGORY.INFO' },
+    { key: EnumNewsCategory.SOCIAL, value: 'NEWS.CATEGORY.SOCIAL' }
   ];
 
   constructor(

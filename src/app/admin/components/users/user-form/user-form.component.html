@@ -5,6 +5,22 @@
     </mat-card-header>
 
     <form *ngIf="formData" [formGroup]="formData">
+        
+        <div class="row">
+            <mat-form-field class="input-form" appearance="outline">
+                <mat-label>{{ "USER.DATA.NAME" | translate }}</mat-label>
+                <mat-icon matPrefix>person</mat-icon>
+                <input matInput formControlName="name" />
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field class="input-form" appearance="outline">
+                <mat-label>{{ "USER.DATA.SURNAME" | translate }}</mat-label>
+                <mat-icon matPrefix>person</mat-icon>
+                <input matInput formControlName="surname" />
+            </mat-form-field>
+        </div>
 
         <div class="row">
             <mat-form-field class="input-form" appearance="outline">
@@ -22,6 +38,16 @@
             </mat-form-field>
         </div>
 
+        <div class="row"> 
+            <mat-form-field>
+                <mat-label>{{ "USER.DATA.ROLE" | translate }}</mat-label>
+                <mat-select formControlName="idRole">
+                    <mat-option *ngFor="let role of userRoles" [value]="role.idRole">
+                        {{ role.translationKey | translate }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
 
         <div class="row">
             <mat-form-field class="input-form" appearance="outline">
@@ -41,7 +67,7 @@
             <mat-form-field class="input-form" appearance="outline">
                 <mat-label>{{ "USER.DATA.REPEAT_PASSWORD" | translate }}</mat-label>
                 <mat-icon matPrefix>lock</mat-icon>
-                <input matInput formControlName="repeatPassword"  [type]="hide ? 'password' : 'text'"/>
+                <input matInput formControlName="repeatPassword" [type]="hide ? 'password' : 'text'"/>
 
                 <div mat-icon-button matSuffix class="hide-button" (pointerdown)="hide = !hide" (pointerup)="hide != hide" 
                     [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" mat-raised-button>
@@ -50,9 +76,10 @@
 
             </mat-form-field>
         </div>
+
         <div mat-dialog-actions class="py-1 float-end">
-            <button mat-raised-button color="primary" type="submit" class="py-1 float-end" (click)="update()" [disabled]="formData.invalid">{{ "ACTIONS.MODIFY" | translate }}</button>
-            <button mat-raised-button color="warn" class="py-1 float-end" (click)="close(null)">{{ "ACTIONS.CLOSE" | translate }}</button>
+            <button mat-raised-button color="primary" mat-dialog-close type="submit" class="py-1 float-end" (click)="register()">{{ "ACTIONS.CREATE" | translate }}</button>
+            <button mat-raised-button color="warn" mat-dialog-close class="py-1 float-end">{{ "ACTIONS.CLOSE" | translate }}</button>
         </div>
     </form>
 

@@ -10,4 +10,8 @@ export class ActivitiesModel{
     creationUser: number;
     eventDate: Date;
     creationDate: Date;
+
+    eventType: string | null;
+    eventCategory: string | null;
+    eventSubcategory: string | null;
 }

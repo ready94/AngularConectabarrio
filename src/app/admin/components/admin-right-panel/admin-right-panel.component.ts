@@ -1,11 +1,17 @@
+import { EnumTournamentType } from '@activities/enums/tournament-type.enum';
 import { ActivitiesModel } from '@activities/models/activities.model';
+import { EventCategoryModel } from '@activities/models/event-category.model';
+import { EventSubcategoryModel } from '@activities/models/event-subcategory.model';
+import { EventTypeModel } from '@activities/models/event-type.model';
+import { ActivitiesService } from '@activities/services/activities.service';
 import { EnumAdminOptions } from '@admin/enums/admin-options.enum';
 import { AdminOptionModel } from '@admin/models/admin-options.model';
 import { AdminService } from '@admin/services/admin.service';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { ComplaintModel } from '@complaints/models/complaint.model';
 import { NewUserModel } from '@login/models/new-user.model';
-import { UserModel } from '@login/models/user.mode';
+import { UserModel } from '@login/models/user.model';
+import { EnumNewsCategory } from '@news/enums/news-category.enum';
 import { NewsModel } from '@news/models/news.model';
 
 @Component({
@@ -13,7 +19,7 @@ import { NewsModel } from '@news/models/news.model';
   templateUrl: './admin-right-panel.component.html',
   styleUrl: './admin-right-panel.component.scss',
 })
-export class AdminRightPanelComponent {
+export class AdminRightPanelComponent implements OnChanges{
   private _optionSelected: AdminOptionModel;
 
   @Input() set optionSelected(option: AdminOptionModel) {
@@ -29,8 +35,14 @@ export class AdminRightPanelComponent {
   activities: ActivitiesModel[] = [];
   news: NewsModel[] = [];
   complaints: ComplaintModel[] = [];
+  eventType: EventTypeModel[] = [];
+  eventCategory: EventCategoryModel[] = [];
+  eventSubcategory: EventSubcategoryModel[] = [];
 
-  constructor(private adminSvc: AdminService) {}
+  constructor(
+    private adminSvc: AdminService,
+    private activitySvc: ActivitiesService
+  ) {}
 
   ngOnChanges(): void {
     if (this._optionSelected) {
@@ -39,6 +51,7 @@ export class AdminRightPanelComponent {
   }
 
   loadLists(option: AdminOptionModel) {
+    debugger
     switch (option.idOption) {
       case EnumAdminOptions.USERS:
         this.getAllUsers();
@@ -47,6 +60,8 @@ export class AdminRightPanelComponent {
         this.getAllComplaints();
         break;
       case EnumAdminOptions.EVENTS:
+        this.getActivityCategories();
+        this.getActivitySubcategories();
         this.getAllActivities();
         break;
       case EnumAdminOptions.NEWS:
@@ -59,6 +74,7 @@ export class AdminRightPanelComponent {
   getAllUsers(): void {
     this.adminSvc.GetAllUsers().subscribe({
       next: (res: UserModel[]) => {
+        debugger;
         this.users = res;
       },
       error: (err: string) => {},
@@ -88,6 +104,16 @@ export class AdminRightPanelComponent {
   getAllNews(): void {
     this.adminSvc.GetNews().subscribe({
       next: (res: NewsModel[]) => {
+        res.forEach((result) => {
+          switch(result.idCategory){
+            case EnumNewsCategory.INFO:
+              result.category = "NEWS.CATEGORY.INFO";
+              break;
+            case EnumNewsCategory.SOCIAL: 
+              result.category = "NEWS.CATEGORY.SOCIAL";
+              break;
+          }
+        })
         this.news = res;
       },
       error: (err: string) => {},
@@ -106,10 +132,51 @@ export class AdminRightPanelComponent {
 
   }
 
+  getActivityCategories(): void {
+    this.activitySvc.GetEventCategories().subscribe({
+      next: (res: EventCategoryModel[]) => {
+        this.eventCategory = res;
+      }
+    })
+  }
+
+  getActivitySubcategories(): void {
+    this.activitySvc.GetEventSubCategories().subscribe({
+      next: (res: EventSubcategoryModel[]) => {
+        this.eventSubcategory = res;
+      }
+    })
+  }
+
   getAllActivities(): void {
     this.adminSvc.GetActivities().subscribe({
       next: (res: ActivitiesModel[]) => {
+        res.forEach((act) => {
+          switch(act.idEventType){
+            case EnumTournamentType.AMISTOSO:
+              act.eventType = "ACTIVITY.ACTTIVITY_TYPE.FRIENDLY";
+              break;
+            case EnumTournamentType.TORNEO:
+              act.eventType = "ACTIVITY.ACTTIVITY_TYPE.TOURNAMENT";
+              break;  
+          }
+          debugger;
+
+          if(this.eventSubcategory){
+            act.eventSubcategory = this.eventSubcategory.find(ev => ev.idEventSubCategory == act.idEventSubCategory).eventSubCategory
+            let idCategory = this.eventSubcategory.find(ev => ev.idEventSubCategory == act.idEventSubCategory).idEventCategory;
+            
+            if(this.eventCategory){
+              
+              act.eventCategory = this.eventCategory.find(ev => ev.idEventCategory == idCategory).eventCategory;
+            }
+          }
+
+
+
+        })
         this.activities = res;
+        debugger
       },
       error: (err: string) => {},
     });
@@ -131,6 +198,7 @@ export class AdminRightPanelComponent {
     this.adminSvc.GetComplaints().subscribe({
       next: (res: ComplaintModel[]) => {
         this.complaints = res;
+        debugger
       },
       error: (err: string) => {},
     });

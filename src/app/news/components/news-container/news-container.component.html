@@ -1,7 +1,7 @@
 <div class="news-container" >
     
     @if (userLoggedIn !== null) {
-        <button mat-raised-button class="btn-theme mx-2 float-end" (click)="createNew()">Crear noticia</button>
+        <button mat-raised-button class="btn-theme mx-2 float-end" (click)="createNew()">{{ "ACTIONS.CREATE" | translate }}</button>
     }
 
     <div class="cards-container">
@@ -32,8 +32,8 @@
                         <a [href]="item.url" target="_blank">{{"GENERAL.READ_MORE"| translate}}</a>  
                     </mat-card-content>
                     <mat-card-actions>
-                        <button mat-raised-button class="btn-theme mx-2 float-end" (click)="update(item)">Editar</button>
-                        <button mat-raised-button class="btn-theme mx-2 float-end" (click)="delete(item)">Eliminar</button>
+                        <button mat-raised-button class="btn-theme mx-2 float-end" (click)="update(item)">{{ "ACTIONS.MODIFY" | translate }}</button>
+                        <button mat-raised-button class="btn-theme mx-2 float-end" (click)="delete(item)">{{ "ACTIONS.DELETE" | translate }}</button>
                     </mat-card-actions>
                 </mat-card>   
             </div>

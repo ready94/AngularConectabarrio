@@ -1,15 +1,10 @@
 import { Component } from '@angular/core';
 import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '@login/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ResponseResult } from '@shared/models/response-result.model';
-import { AuthService } from '@shared/services/auth.service';
-import { MainConfigurationService } from '@shared/services/main-configuration.service';
 import { MsgService } from '@shared/services/msg.service';
 import { SpinnerService } from '@shared/services/spinner.service';
-import { StorageService } from '@shared/services/storage.service';
 
 @Component({
   selector: 'app-register-new-user',
@@ -24,17 +19,11 @@ export class RegisterNewUserComponent {
   strongPasswordRegx: RegExp = /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
   
   constructor(
-    private creationDialog: MatDialog,
     private formBuilder: UntypedFormBuilder,
     private msgSvc: MsgService,
-    private router: Router,
-    private route: ActivatedRoute,
     private spinnerSvc: SpinnerService,
-    private storageSvc: StorageService,
-    private authSvc: AuthService,
     private userSvc: UserService,
     private translateSvc: TranslateService,
-    private mainConfigSvc: MainConfigurationService
   ) {}
 
   ngOnInit(): void {

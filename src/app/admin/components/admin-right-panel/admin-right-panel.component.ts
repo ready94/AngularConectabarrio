@@ -1,3 +1,4 @@
+import { ActivitiesNewFormComponent } from '@activities/components/activities-new-form/activities-new-form.component';
 import { EnumTournamentType } from '@activities/enums/tournament-type.enum';
 import { ActivitiesModel } from '@activities/models/activities.model';
 import { EventCategoryModel } from '@activities/models/event-category.model';
@@ -8,11 +9,19 @@ import { EnumAdminOptions } from '@admin/enums/admin-options.enum';
 import { AdminOptionModel } from '@admin/models/admin-options.model';
 import { AdminService } from '@admin/services/admin.service';
 import { Component, Input, OnChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ComplaintModel } from '@complaints/models/complaint.model';
+import { LoginDto } from '@login/models/loginDTO.model';
 import { NewUserModel } from '@login/models/new-user.model';
 import { UserModel } from '@login/models/user.model';
 import { EnumNewsCategory } from '@news/enums/news-category.enum';
 import { NewsModel } from '@news/models/news.model';
+import { AuthService } from '@shared/services/auth.service';
+import { AdminUserFormComponent } from '../users/user-form/user-form.component';
+import { NewsFormComponent } from '@news/components/news-form/news-form.component';
+import { ComplaintFormComponent } from '@complaints/components/complaint-form/complaint-form.component';
+import { EnumComplaintType } from '@complaints/enums/complaint-type.enum';
+import { EnumComplaintPriority } from '@complaints/enums/complaint-priority.enum';
 
 @Component({
   selector: 'app-admin-right-panel',
@@ -39,10 +48,33 @@ export class AdminRightPanelComponent implements OnChanges{
   eventCategory: EventCategoryModel[] = [];
   eventSubcategory: EventSubcategoryModel[] = [];
 
+  logged: boolean;
+  userLoggedIn: LoginDto = null;
+
+  types: any = [
+    { key: EnumComplaintType.INCIDENT, value: 'COMPLAINTS.TYPES.INCIDENT' },
+    { key: EnumComplaintType.SOCIAL, value: 'COMPLAINTS.TYPES.SOCIAL' },
+    { key: EnumComplaintType.REQUEST, value: 'COMPLAINTS.TYPES.REQUEST' }
+  ];
+
+  priorities: any = [
+    { key: EnumComplaintPriority.LOW, value: 'COMPLAINTS.TYPE_PRIORITY.LOW' },
+    { key: EnumComplaintPriority.MEDIUM, value: 'COMPLAINTS.TYPE_PRIORITY.MEDIUM' },
+    { key: EnumComplaintPriority.HIGH, value: 'COMPLAINTS.TYPE_PRIORITY.HIGH' },
+    { key: EnumComplaintPriority.URGENT, value: 'COMPLAINTS.TYPE_PRIORITY.URGENT' }
+  ]
+
+
   constructor(
+    private creationDialog: MatDialog,
     private adminSvc: AdminService,
-    private activitySvc: ActivitiesService
-  ) {}
+    private activitySvc: ActivitiesService,
+    private authSvc: AuthService,
+  ) {  
+    if (this.authSvc.isAuthenticated()) {
+    this.logged = true;
+    this.userLoggedIn = this.authSvc.GetCurrentUserSession().user;
+  }}
 
   ngOnChanges(): void {
     if (this._optionSelected) {
@@ -82,7 +114,13 @@ export class AdminRightPanelComponent implements OnChanges{
   }
 
   updateUser(user: UserModel): void {
-
+    const dialog = this.creationDialog.open(AdminUserFormComponent, {
+      width: '30%',
+      height: '70%',
+      autoFocus: false,
+      disableClose: true,
+      data: { user: user, idAdmin: this.userLoggedIn.idUser}
+    });
   }
 
   deleteUser(user: UserModel): void {
@@ -90,7 +128,13 @@ export class AdminRightPanelComponent implements OnChanges{
   }
 
   createUser(): void {
-
+    const dialog = this.creationDialog.open(AdminUserFormComponent, {
+      width: '30%',
+      height: '70%',
+      autoFocus: false,
+      disableClose: true,
+      data: { idAdmin: this.userLoggedIn.idUser}
+    });
   }
 
   blockUser(user: UserModel): void{
@@ -121,7 +165,18 @@ export class AdminRightPanelComponent implements OnChanges{
   }
 
   createNew(): void {
+    const dialog = this.creationDialog.open(NewsFormComponent, {
+      width: '30%',
+      height: '70%',
+      autoFocus: false,
+      data: { idUser: this.userLoggedIn.idUser },
+    });
 
+    dialog.afterClosed().subscribe({
+      next: (res: boolean) => {
+        if (res) this.getAllNews();
+      },
+    });
   }
 
   updateNew(updateNew: NewsModel): void {
@@ -172,8 +227,6 @@ export class AdminRightPanelComponent implements OnChanges{
             }
           }
 
-
-
         })
         this.activities = res;
         debugger
@@ -183,7 +236,18 @@ export class AdminRightPanelComponent implements OnChanges{
   }
 
   createActivity(): void {
+    const dialog = this.creationDialog.open(ActivitiesNewFormComponent, {
+      width: '30%',
+      height: '70%',
+      autoFocus: false,
+      data: { idUser: this.userLoggedIn.idUser },
+    });
 
+    dialog.afterClosed().subscribe({
+      next: (res: boolean) => {
+        this.getAllActivities();
+      },
+    });
   }
 
   updateActivity(activity: ActivitiesModel): void {
@@ -197,6 +261,10 @@ export class AdminRightPanelComponent implements OnChanges{
   getAllComplaints(): void {
     this.adminSvc.GetComplaints().subscribe({
       next: (res: ComplaintModel[]) => {
+        res.forEach(complaint => {
+          complaint.complaintPriority = this.priorities.find(priority => priority.key == complaint.idPriority).value;
+          complaint.complaintType = this.types.find(type => type.key == complaint.idPriority).value;
+        })
         this.complaints = res;
         debugger
       },
@@ -205,7 +273,19 @@ export class AdminRightPanelComponent implements OnChanges{
   }
 
   createComplaint(): void {
+    const dialog = this.creationDialog.open(ComplaintFormComponent, {
+      width: '30%',
+      height: '70%',
+      autoFocus: false,
+      data: { idUser: this.userLoggedIn.idUser },
+    });
 
+    dialog.afterClosed().subscribe({
+      next: (res: boolean) => {
+        if(res)
+          this.getAllComplaints();
+      },
+    });
   }
 
   updateComplaint(complaint: ComplaintModel): void {

@@ -1,5 +1,4 @@
 .nav-bar-sticky{
-    //background-image: url('../../../../assets/images/BannerConectaBarrio2.png');
     background-position: relative;
     background-repeat: no-repeat;
     background-color: white;
@@ -8,12 +7,33 @@
     height: 10vh;    
     z-index: 500;
     position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem; 
+    
+    @media screen and (max-width: 768px) {
+        height: 8vh;
+        padding: 0 0.5rem; 
+    }
 }
 
 .nav-bar-sticky img{
     background-repeat: no-repeat;
     padding: 15px 25px;
     margin-left: 7%;
+    max-height: 80%; 
+    
+    @media screen and (max-width: 768px) {
+        padding: 10px 15px; 
+        margin-left: 5%;
+        max-height: 70%; 
+    }
+
+    @media screen and (max-width: 480px) {
+        padding: 8px 10px;
+        margin-left: 2%;
+    }
 }
 
 .btn-theme, .btn-btn-theme{
@@ -24,21 +44,51 @@
     border-color: #715EE8;
     color: #ffe484;
     z-index: 1;
+
+    
     &:hover {
         background-color: #43388A;
         color: #ffe484;
+    }
+
+    @media screen and (max-width: 768px) {
+        padding: 10px 20px; 
+        font-size: medium; 
+    }
+
+    @media screen and (max-width: 480px) {
+        padding: 8px 15px; 
+        font-size: small;
     }
 }
 
 .float-end{
     font-size: larger;
     justify-items: end;
+    
+    @media screen and (max-width: 768px) {
+        font-size: medium;
+    }
+
+    @media screen and (max-width: 480px) {
+        font-size: small;
+    }
 }
 
 .user {
     font-size: medium;
     font-weight: bold;
     margin-top: 2%;
+
+    @media screen and (max-width: 768px) {
+        font-size: small;
+        margin-top: 1%;
+    }
+
+    @media screen and (max-width: 480px) {
+        font-size: x-small;
+        margin-top: 0.5%;
+    }
 }
 
 .user-info { 
@@ -46,5 +96,22 @@
     top: 16px;
     right: 16px;
     z-index: 1000;
+    
+    @media screen and (max-width: 768px) {
+        top: 10px;
+        right: 10px;
+    }
 
+    @media screen and (max-width: 480px) {
+        top: 8px;
+        right: 8px;
+    }
+}
+
+img {
+    transition: transform 0.2s;
+}
+
+img:hover {
+    transform: scale(1.1);
 }

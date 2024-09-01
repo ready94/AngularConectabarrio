@@ -8,14 +8,14 @@ import { ComplaintsRoutingModule } from './complaints-routing.module';
 import { ComplaintFormComponent } from './components/complaint-form/complaint-form.component';
 import { ComplaintsContainerComponent } from './components/complaints-container/complaints-container.component';
 import { ComplaintsMainComponent } from './components/complaints-main/complaints-main.component';
-import { ComplaintsComponent } from './pages/complaints/complaints.component';
+import { ComplaintDescriptionDialogComponent } from './components/complaint-description-dialog/complaint-description-dialog.component';
 
 @NgModule({
   declarations: [
-    ComplaintsComponent,
     ComplaintsContainerComponent,
     ComplaintsMainComponent,
     ComplaintFormComponent,
+    ComplaintDescriptionDialogComponent
   ],
   imports: [
     CommonModule,

@@ -22,14 +22,7 @@ export class AppComponent implements OnInit {
   title = 'ConectaBarrio';
 
   isIFrame: boolean;
-  opciones: any[] = [
-    { id: 0, value: 'Inicio', icon: 'home' },
-    { id: 1, value: 'Noticias', icon: 'newspaper' },
-    { id: 2, value: 'Eventos', icon: 'campaign' },
-    { id: 3, value: 'Quejas / Denuncias', icon: 'notifications' },
-    { id: 4, value: 'Calendario', icon: 'calendar_month' },
-  ];
-
+ 
   options: OptionsModel[] = [];
 
   @ViewChild('sidenav') sidenav: MatSidenav;
@@ -57,9 +50,9 @@ export class AppComponent implements OnInit {
       case EnumMenuOptions.COMPLAINTS:
         this.router.navigate(['complaints']);
         break;
-      case EnumMenuOptions.CALENDAR:
-        this.router.navigate(['calendar']);
-        break;
+      // case EnumMenuOptions.CALENDAR:
+      //   this.router.navigate(['calendar']);
+      //   break;
       case EnumMenuOptions.ADMINISTRATION:
         this.router.navigate(['admin']);
         break;
@@ -75,10 +68,10 @@ export class AppComponent implements OnInit {
     private sharedSvc: SharedService,
     private authSvc: AuthService
   ) {
-
-    //this.mainConfSvc.ApplyMainConfiguration();
+      this.translateSvc.setDefaultLang('es');
+      this.translateSvc.use('es');
   }
-
+  
   ngOnInit(): void {
     this.isIFrame = window !== window.parent && !window.opener;
 

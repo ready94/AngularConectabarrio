@@ -23,6 +23,10 @@ export class MainNavbarComponent implements OnInit{
     private translateSvc: TranslateService
   ) { }
 
+  switchLanguage(language: string) {
+    this.translateSvc.use(language);
+  }
+
   ngOnInit(): void {
     if (this.authSvc.isAuthenticated()) {
       this.isLogged = true;

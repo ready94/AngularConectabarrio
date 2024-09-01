@@ -5,6 +5,9 @@
     }
 
     <div  class="cards-container">
+
+        <h2>{{ "COMPLAINTS.MY_COMPLAINTS" | translate }}</h2>
+
         <div class="row-cards" *ngFor="let row of rowsMyComplaints">
             <div class="column-cards" *ngFor="let item of row">
                 <mat-card class="card" >
@@ -13,11 +16,11 @@
                     </mat-card-header>
                     <mat-card-content>
                         <p>{{item.description}}</p>
-                        <a [href]="item.url" target="_blank">{{"GENERAL.READ_MORE"| translate}}</a>  
+                        <a (click)="openDescription(item)">{{"GENERAL.READ_MORE"| translate}}</a>  
                     </mat-card-content>
                     <mat-card-actions>
-                        <button mat-raised-button class="btn-theme mx-2 float-end" (click)="update(item)">{{ "ACTIONS.MODIFY" | translate }}</button>
-                        <button mat-raised-button class="btn-theme mx-2 float-end" (click)="delete(item)">{{ "ACTIONS.DELETE" | translate }}</button>
+                        <button mat-raised-button class="btn-theme mx-2 float-end" (click)="updateComplaint(item)">{{ "ACTIONS.MODIFY" | translate }}</button>
+                        <button mat-raised-button class="btn-theme mx-2 float-end" (click)="deleteComplaint(item)">{{ "ACTIONS.DELETE" | translate }}</button>
                     </mat-card-actions>
                 </mat-card>   
             </div>
@@ -25,6 +28,9 @@
     </div>
     
     <div class="cards-container">
+
+        <h2>{{ "COMPLAINTS.USERS_COMPLAINTS" | translate }}</h2>
+
         <div class="row-cards" *ngFor="let row of rowsComplaints">
             <div class="column-cards" *ngFor="let item of row">
                 <mat-card class="card" > 
@@ -33,7 +39,7 @@
                     </mat-card-header>
                     <mat-card-content>
                         <p>{{item.description}}</p>
-                        <a [href]="item.url" target="_blank">{{"GENERAL.READ_MORE"| translate}}</a>  
+                        <a (click)="openDescription(item)">{{"GENERAL.READ_MORE"| translate}}</a>  
                     </mat-card-content>
                 </mat-card>   
             </div>

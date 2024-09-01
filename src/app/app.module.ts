@@ -1,7 +1,5 @@
 import { ActivitiesModule } from '@activities/activities.module';
 import { AdminModule } from '@admin/admin.module';
-import { AdvertisementsModule } from '@advertisements/advertisements.module';
-import { AlertsModule } from '@alerts/alerts.module';
 import {
   APP_BASE_HREF,
   LocationStrategy,
@@ -22,7 +20,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CalendarModule } from '@calendar/calendar.module';
 import { ComplaintsModule } from '@complaints/complaints.module';
 import { HomeModule } from '@home/home.module';
 import { LoginModule } from '@login/login.module';
@@ -59,9 +56,6 @@ const providersArray: Provider[] = [
     HttpClientModule,
     //CommonModule,
     ActivitiesModule,
-    AdvertisementsModule,
-    AlertsModule,
-    CalendarModule,
     ComplaintsModule,
     HomeModule,
     LoginModule,

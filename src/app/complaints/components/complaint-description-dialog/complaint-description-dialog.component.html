@@ -1,0 +1,19 @@
+<div class="card w-100 p-4">
+
+    <mat-card-header>
+        <img src="../../../../assets/images/header-dialog.png">
+    </mat-card-header>
+   
+    <div class="row"> 
+        <h2>{{ "COMPLAINTS.TITLE" | translate }}: {{item.title}}</h2>
+    </div>
+
+    <div class="row">
+        <p>{{ "COMPLAINTS.DESCRIPTION" | translate }}: {{ item.description }}</p>
+    </div>
+
+    <div mat-dialog-actions class="py-1 float-end">
+        <button mat-raised-button color="warn" mat-dialog-close class="py-1 float-end">{{ "ACTIONS.CLOSE" | translate }}</button>
+    </div>
+
+</div>

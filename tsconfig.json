@@ -31,7 +31,7 @@
       "@news/*": ["src/app/news/*"],
       "@home/*": ["src/app/home/*"],
       "@complaints/*": ["src/app/complaints/*"],
-      "@calendar/*": ["src/app/calendar/*"],
+      // "@calendar/*": ["src/app/calendar/*"],
       "@alerts/*": ["src/app/alerts/*"],
       "@advertisements/*": ["src/app/advertisements/*"],
       "@activities/*": ["src/app/activities/*"],

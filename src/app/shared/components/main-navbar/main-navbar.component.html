@@ -1,6 +1,11 @@
 <div class="nav-bar-sticky">
     <img src="../../../../assets/images/BannerConectaBarrio2.png">
     
+    <div style="display: flex;" class="float-end">
+        <img src="../../../../assets/images/spain.png" alt="Español"  (click)="switchLanguage('es')" >
+        <img src="../../../../assets/images/england.png" alt="English"  (click)="switchLanguage('en')" >
+      </div>
+
     @if (isLogged) {
         <div class="user-info align-items-center">
             <span class="user"> {{userLog.userName}} </span>

@@ -1,6 +1,6 @@
 import { AdminOptionModel } from '@admin/models/admin-options.model';
 import { AdminService } from '@admin/services/admin.service';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-admin-left-panel',

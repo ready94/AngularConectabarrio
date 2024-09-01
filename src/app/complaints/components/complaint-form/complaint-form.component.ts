@@ -4,7 +4,6 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { EnumComplaintPriority } from '@complaints/enums/complaint-priority.enum';
 import { EnumComplaintType } from '@complaints/enums/complaint-type.enum';
 import { ComplaintsService } from '@complaints/services/complaints.service';
-import { NewsService } from '@news/services/news.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MsgService } from '@shared/services/msg.service';
 import { SpinnerService } from '@shared/services/spinner.service';
@@ -22,16 +21,16 @@ export class ComplaintFormComponent {
   idUser: number;
 
   types: any = [
-    { key: EnumComplaintType.INCIDENT, value: 'INCIDENTE' },
-    { key: EnumComplaintType.SOCIAL, value: 'SOCIAL' },
-    { key: EnumComplaintType.REQUEST, value: 'PETICIÓN' }
+    { key: EnumComplaintType.INCIDENT, value: 'COMPLAINTS.TYPES.INCIDENT' },
+    { key: EnumComplaintType.SOCIAL, value: 'COMPLAINTS.TYPES.SOCIAL' },
+    { key: EnumComplaintType.REQUEST, value: 'COMPLAINTS.TYPES.REQUEST' }
   ];
 
   priorities: any = [
-    { key: EnumComplaintPriority.LOW, value: 'BAJA' },
-    { key: EnumComplaintPriority.MEDIUM, value: 'MEDIA' },
-    { key: EnumComplaintPriority.HIGH, value: 'ALTA' },
-    { key: EnumComplaintPriority.URGENT, value: 'URGENTE' }
+    { key: EnumComplaintPriority.LOW, value: 'COMPLAINTS.TYPE_PRIORITY.LOW' },
+    { key: EnumComplaintPriority.MEDIUM, value: 'COMPLAINTS.TYPE_PRIORITY.MEDIUM' },
+    { key: EnumComplaintPriority.HIGH, value: 'COMPLAINTS.TYPE_PRIORITY.HIGH' },
+    { key: EnumComplaintPriority.URGENT, value: 'COMPLAINTS.TYPE_PRIORITY.URGENT' }
   ]
 
   constructor(
@@ -66,10 +65,12 @@ export class ComplaintFormComponent {
       this.complaintSvc.CreateComplaint(this.idUser, this.formData.value).subscribe({
         next: (res: boolean) => {
           if (res === true) {
-            this.msgSvc.showAlertSuccess("OK");
+            const msg: string = this.translateSvc.instant("SUCCESS.COMPLAINT_CREATED");
+            this.msgSvc.showAlertSuccess(msg);
             this.dialogRef.close(true);
           } else {
-            this.msgSvc.showAlertError("ERROR");
+            const msg: string = this.translateSvc.instant("ERROR.COMPLAINT_CREATION");
+            this.msgSvc.showAlertError(msg);
           }
         },
       });

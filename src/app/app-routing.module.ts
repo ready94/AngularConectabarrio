@@ -34,29 +34,6 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: 'calendar',
-    data: { title: 'Calendario' },
-    loadChildren: () =>
-      import('@calendar/calendar.module').then((m) => m.CalendarModule),
-    canActivate: [authGuard]
-  },
-  {
-    path: 'alerts',
-    data: { title: 'Alertas' },
-    loadChildren: () =>
-      import('@alerts/alerts.module').then((m) => m.AlertsModule),
-    canActivate: [authGuard]
-  },
-  {
-    path: 'advertisements',
-    data: { title: 'Avisos' },
-    loadChildren: () =>
-      import('@advertisements/advertisements.module').then(
-        (m) => m.AdvertisementsModule
-      ),
-      canActivate: [authGuard]
-  },
-  {
     path: 'activities',
     data: { title: 'Actividades' },
     loadChildren: () =>

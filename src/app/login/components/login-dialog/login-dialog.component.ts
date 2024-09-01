@@ -2,18 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoginModel } from '@login/models/login.model';
+import { LoginDto } from '@login/models/loginDTO.model';
 import { LoginService } from '@login/services/login.service';
 import { LogoutService } from '@login/services/logout.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ResponseResult } from '@shared/models/response-result.model';
 import { AuthService } from '@shared/services/auth.service';
-import { MainConfigurationService } from '@shared/services/main-configuration.service';
 import { MsgService } from '@shared/services/msg.service';
 import { SpinnerService } from '@shared/services/spinner.service';
-import { StorageService } from '@shared/services/storage.service';
 import { LoginForgotPasswordDialogComponent } from '../login-forgot-password-dialog/login-forgot-password-dialog.component';
-import { LoginModel } from '@login/models/login.model';
-import { LoginDto } from '@login/models/loginDTO.model';
 
 @Component({
   selector: 'app-login-dialog',
@@ -34,12 +32,10 @@ export class LoginDialogComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private spinnerSvc: SpinnerService,
-    private storageSvc: StorageService,
     private authSvc: AuthService,
     private loginSvc: LoginService,
     private logOutSvc: LogoutService,
     private translateSvc: TranslateService,
-    private mainConfigSvc: MainConfigurationService
   ) {}
 
   ngOnInit(): void {

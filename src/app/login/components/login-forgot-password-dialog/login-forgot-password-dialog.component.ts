@@ -1,17 +1,13 @@
 import { Component } from '@angular/core';
 import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ForgotPassword } from '@login/models/forgot-password.model';
 import { LoginService } from '@login/services/login.service';
-import { LogoutService } from '@login/services/logout.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ResponseResult } from '@shared/models/response-result.model';
-import { AuthService } from '@shared/services/auth.service';
-import { MainConfigurationService } from '@shared/services/main-configuration.service';
 import { MsgService } from '@shared/services/msg.service';
 import { SpinnerService } from '@shared/services/spinner.service';
-import { StorageService } from '@shared/services/storage.service';
 
 @Component({
   selector: 'app-login-forgot-password-dialog',
@@ -26,19 +22,13 @@ export class LoginForgotPasswordDialogComponent {
   strongPasswordRegx: RegExp = /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
 
   constructor(
-    private creationDialog: MatDialog,
     private dialogRef: MatDialogRef<LoginForgotPasswordDialogComponent>,
     private formBuilder: UntypedFormBuilder,
     private msgSvc: MsgService,
     private router: Router,
-    private route: ActivatedRoute,
     private spinnerSvc: SpinnerService,
-    private storageSvc: StorageService,
-    private authSvc: AuthService,
     private loginSvc: LoginService,
-    private logOutSvc: LogoutService,
     private translateSvc: TranslateService,
-    private mainConfigSvc: MainConfigurationService
   ) {}
 
   ngOnInit(): void {

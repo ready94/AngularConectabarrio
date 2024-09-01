@@ -8,10 +8,10 @@
         
         <div class="row"> 
             <mat-form-field>
-                <mat-label>Selecciona tipo</mat-label>
+                <mat-label>{{ "ACTIVITY.TYPE" | translate }}</mat-label>
                 <mat-select formControlName="idEventType">
                     <mat-option *ngFor="let type of types" [value]="type.idEventType">
-                        {{type.eventType}}
+                        {{type.eventType | translate}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -19,10 +19,10 @@
 
         <div class="row"> 
             <mat-form-field>
-                <mat-label>Selecciona categoría</mat-label>
+                <mat-label>{{ "ACTIVITY.CATEGORY" | translate }}</mat-label>
                 <mat-select formControlName="idEventCategory">
-                    <mat-option *ngFor="let cat of categories" [value]="cat.idEventCategory">
-                        {{cat.eventCategory}}
+                    <mat-option *ngFor="let cat of categories" [value]="cat.idEventCategory" (onSelectionChange)="selectCategory(cat.idEventCategory)">
+                        {{cat.eventCategory | translate}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -30,10 +30,10 @@
 
         <div class="row"> 
             <mat-form-field>
-                <mat-label>Selecciona subcategoría</mat-label>
+                <mat-label>{{ "ACTIVITY.SUBCATEGORY" | translate }}</mat-label>
                 <mat-select formControlName="idEventSubCategory">
-                    <mat-option *ngFor="let subcat of subcategories" [value]="subcat.idEventSubCategory">
-                        {{subcat.eventSubCategory}}
+                    <mat-option *ngFor="let subcat of subCategoriesFiltered" [value]="subcat.idEventSubCategory">
+                        {{subcat.eventSubCategory | translate}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -42,27 +42,27 @@
 
         <div class="row">
             <mat-form-field class="input-form" appearance="outline">
-                <mat-label>Localización</mat-label>
+                <mat-label>{{ "ACTIVITY.LOCATION" | translate }}</mat-label>
                 <input matInput formControlName="location" />
             </mat-form-field>
         </div>
 
         <div class="row">
             <mat-form-field class="input-form" appearance="outline">
-                <mat-label>Nº de personas máximo</mat-label>
+                <mat-label>{{ "ACTIVITY.MAX_PERSON" | translate }}</mat-label>
                 <input matInput formControlName="maxPerson" type="number" />
             </mat-form-field>
         </div>
 
         <mat-form-field>
-            <mat-label>Fecha del evento</mat-label>
-            <input matInput [matDatepicker]="start" placeholder="Selecciona una fecha:" formControlName="eventDate"/>
+            <mat-label>{{ "ACTIVITY.DATE" | translate }}</mat-label>
+            <input matInput [matDatepicker]="start" formControlName="eventDate"/>
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="start"></mat-datepicker-toggle>
             <mat-datepicker #start>
               <mat-datepicker-actions>
-                <button mat-button matDatepickerCancel>Cancelar</button>
-                <button mat-raised-button matDatepickerApply>Seleccionar</button>
+                <button mat-button matDatepickerCancel>{{ "ACTIONS.CANCEL" | translate }}</button>
+                <button mat-raised-button matDatepickerApply>{{ "ACTIONS.SELECT" | translate }}</button>
               </mat-datepicker-actions>
             </mat-datepicker>
           </mat-form-field>

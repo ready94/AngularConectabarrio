@@ -1,10 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginDialogComponent } from '@login/components/login-dialog/login-dialog.component';
 import { RegisterNewUserComponent } from '@login/components/register-new-user/register-new-user.component';
 import { LoginDto } from '@login/models/loginDTO.model';
-import { LoginComponent } from '@login/pages/login/login.component';
-import { CurrentUser } from '@shared/models/user.model';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '@shared/services/auth.service';
 import { MsgService } from '@shared/services/msg.service';
 
@@ -20,7 +19,8 @@ export class MainNavbarComponent implements OnInit{
   constructor(
     private creationDialog: MatDialog,
     private msgSvc: MsgService,
-    private authSvc: AuthService
+    private authSvc: AuthService,
+    private translateSvc: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -59,7 +59,8 @@ export class MainNavbarComponent implements OnInit{
   logOut(): void {
     this.isLogged = false;
     this.authSvc.LogOut();
-    this.msgSvc.ShowToastSuccess('LOGIN.LOGOUT_SUCCESS');
+    const msg: string = this.translateSvc.instant('LOGIN.LOGOUT_SUCCESS');
+    this.msgSvc.ShowToastSuccess(msg);
     setTimeout(() => {window.location.reload();}, 1500);
     
   }

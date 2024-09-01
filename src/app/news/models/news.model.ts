@@ -13,6 +13,9 @@ export interface NewsModel {
     endDate: Date;
     active: boolean;
     url: string | null;
+
+    category: string | null;
+
 }
 
 export interface GoogleNewsModel {

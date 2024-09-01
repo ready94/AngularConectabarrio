@@ -16,19 +16,19 @@ export class MsgService {
     private translateSvc: TranslateService
   ) {}
 
-  private ShowAlertInfo(title: string, msg: string): void {
+  ShowAlertInfo(title: string, msg: string): void {
     this.showAlert(title, msg, 'info');
   }
 
-  private ShowAlertSuccess(title: string, msg: string): void {
+  ShowAlertSuccess(title: string, msg: string): void {
     this.showAlert(title, msg, 'success');
   }
 
-  private ShowAlertWarning(title: string, msg: string): void {
+  ShowAlertWarning(title: string, msg: string): void {
     this.showAlert(title, msg, 'warning');
   }
 
-  private ShowAlertError(title: string, msg: string): void {
+  ShowAlertError(title: string, msg: string): void {
     this.showAlert(title, msg, 'error');
   }
 

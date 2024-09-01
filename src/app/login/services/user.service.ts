@@ -3,9 +3,10 @@ import { environment } from '../../../environments/environment.development';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserModel } from '../models/user.mode';
+import { UserModel } from '../models/user.model';
 import { NewUserModel } from '@login/models/new-user.model';
 import { ResponseResult } from '../../shared/models/response-result.model';
+import { UserRolesDTO } from '@login/models/user-roles-dto.model';
 
 @Injectable({
   providedIn: 'root',
@@ -38,5 +39,10 @@ export class UserService {
   GetAllUsers(): Observable<UserModel[]> {
     const url = this.url + `/getAllUsers`;
     return this.httpClient.get<UserModel[]>(url);
+  }
+
+  GetUserRoles(): Observable<UserRolesDTO[]> {
+    const url = this.url + `/getUserRoles`;
+    return this.httpClient.get<UserRolesDTO[]>(url);
   }
 }

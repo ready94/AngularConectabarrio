@@ -8,16 +8,16 @@
         
             <div class="row">
                 <mat-form-field class="input-form" appearance="outline">
-                    <mat-label>Usuario</mat-label>
+                    <mat-label>{{ "USER.DATA.USERNAME" | translate }}</mat-label>
                     <mat-icon matPrefix>person</mat-icon>
                     <input matInput formControlName="userName" />
                 </mat-form-field>
             </div>
             <div class="row">
                 <mat-form-field class="input-form" appearance="outline">
-                    <mat-label>Contraseña</mat-label>
+                    <mat-label>{{ "USER.DATA.PASSWORD" | translate }}</mat-label>
                     <mat-icon matPrefix>lock</mat-icon>
-                    <input matInput formControlName="password"  [type]="hide ? 'password' : 'text'"/>
+                    <input matInput formControlName="password" [type]="hide ? 'password' : 'text'"/>
 
                     <div mat-icon-button matSuffix class="hide-button" (pointerdown)="hide = !hide" (pointerup)="hide != hide" 
                         [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" mat-raised-button>
@@ -27,9 +27,9 @@
                 </mat-form-field>
             </div>
         <div mat-dialog-actions class="py-1 float-end">
-            <button mat-raised-button color="primary" type="submit" class="py-1 float-end" (click)="login()">Acceder</button>
-            <button mat-raised-button color="warn" class="py-1 float-end" (click)="close(null)">Cerrar</button>
-            <button mat-raised-button color="blue" class="py-1 float-end" (click)="forgotPass()">¿Contraseña olvidada?</button>
+            <button mat-raised-button color="primary" type="submit" class="py-1 float-end" (click)="login()" [disabled]="formData.invalid">{{ "ACTIONS.LOG_IN" | translate }}</button>
+            <button mat-raised-button color="warn" class="py-1 float-end" (click)="close(null)">{{ "ACTIONS.CLOSE" | translate }}</button>
+            <button mat-raised-button color="blue" class="py-1 float-end" (click)="forgotPass()">{{ "USER.DATA.FORGOT_PASSWORD" | translate }}</button>
         </div>
     </form>
 

@@ -5,11 +5,14 @@
       "FORGOT_PASSWORD": "Contraseña olvidada",
       "REQUEST_CHANGE": "Cambiar contraseña",
       "ERROR": {
+        "WRONG_DATA": "El usuario o la contraseña son incorrectos",
         "WRONG_PASSWORD": "Contraseña errónea",
         "WRONG_USERNAME": "Usuario incorrecto",
         "LOGIN": "Se ha producido un error al acceder",
         "LOCKED": "Usuario bloqueado",
-        "GETTING_IP": "Se ha producido un error al obtener la dirección IP del usuario"
+        "GETTING_IP": "Se ha producido un error al obtener la dirección IP del usuario",
+        "INVALID_FORMAT": "La contraseña debe contener mínimo 8 caracteres: 1 mayúscula, 1 minúscula, 1 número obligatorios, y 1 caracter especial opcional",
+        "INVALID_EMAIL": "El email debe tener el formato example@dominio.com"
       },
       "SEND_LINK_CHANGE_PASSWORD": "En breves recibirá en su correo un enlace para poder cambiar su contraseña"
     }
@@ -23,6 +26,7 @@
   },
   "ACTIONS": {
     "ACCEPT": "Aceptar",
+    "SELECT": "Seleccionar",
     "CANCEL": "Cancelar",
     "CLOSE": "Cerrar",
     "EXIT": "Salir",
@@ -47,13 +51,17 @@
     "MARK_ALL": "Marcar todo",
     "UNMARK_ALL": "Desmarcar todo",
     "CONTINUE": "Continuar",
-    "INFORMATION": "Información"
+    "INFORMATION": "Información",
+    "MODIFY": "Modificar",
+    "LOG_IN": "Acceder",
+    "REGISTER": "Registro"
   },
   "SUCCESS": {
     "SUCCESS": "Éxito",
     "DELETE": "Los datos se han borrado correctamente",
     "UPDATE": "Los datos se han modificado correctamente",
-    "SAVE": "Los datos se han guardado correctamente"
+    "SAVE": "Los datos se han guardado correctamente",
+    "PASSWORD_CHANGED": "La contraseña se ha modificado correctamente. Por favor, inicie sesión con la nueva contraseña."
   },
   "WARNING": {
     "WARNING": "Advertencia",
@@ -77,10 +85,24 @@
     "CREATED_SUCCESS": "Usuario creado correctamente.",
     "CREATED_ERROR": "Se ha producido un error al crear el usuario.",
     "ALREADY_EXISTS_EMAIL": "El email introducido ya está registrado.",
-    "ALREADY_EXISTS_USERNAME": "El nombre de usuario ya está registrado"
+    "ALREADY_EXISTS_USERNAME": "El nombre de usuario ya está registrado",
+    "DATA": {
+      "NAME": "Nombre",
+      "SURNAME": "Apellido",
+      "USERNAME": "Nombre de usuario",
+      "PASSWORD": "Contraseña",
+      "EMAIL": "Email",
+      "ROLE": "Rol de usuario",
+      "REPEAT_PASSWORD": "Repetir contraseña",
+      "FORGOT_PASSWORD": "¿Contraseña olvidada?"
+    }
   },
   "GENERAL": {
-    "READ_MORE": "Leer más"
+    "READ_MORE": "Leer más",
+    "TITLE": "Título",
+    "CREATE": "Crear",
+    "CLOSE": "Cerrar",
+    "SAVE": "Guardar"
   },
   "OPTIONS": {
     "HOME": "Inicio",
@@ -89,5 +111,77 @@
     "COMPLAINTS": "Denuncias / Quejas",
     "CALENDAR": "Calendario",
     "ADMINISTRATION": "Administración"
+  },
+  "ADMIN": {
+    "USERS": "Usuarios",
+    "NEWS": "Noticias",
+    "COMPLAINTS": "Denuncias / Quejas",
+    "EVENTS": "Actividades / Eventos"
+  },
+  "NEWS": {
+    "TITLE": "Título",
+    "DESCRIPTION": "Descripción",
+    "INIT_DATE": "Fecha de inicio",
+    "END_DATE": "Fecha de fin",
+    "CATEGORY": {
+      "SELECT": "Selecciona categoría",
+      "INFO": "Informativa",
+      "SOCIAL": "Social"
+    }
+  },
+  "COMPLAINTS": {
+    "TITLE": "Título",
+    "TYPE": "Tipo"
+  },
+  "ACTIVITY": {
+    "TYPE" : "Tipo",
+    "CATEGORY": "Categoría",
+    "SUBCATEGORY": "Subcategoría",
+    "LOCATION": "Localización",
+    "MAX_PERSON": "Nº máximo personas",
+    "ACTUAL_PERSON": "Nº actual personas",
+    "ACTTIVITY_TYPE": {
+      "FRIENDLY": "Amistoso",
+      "TOURNAMENT": "Torneo"
+    }
+  },
+  "EVENT_CATEGORY": {
+    "SPORT": "Deporte",
+    "VIDEOGAME": "Videojuego",
+    "TABLETOP": "Juego de mesa",
+    "MUSIC": "Música",
+    "COOKING": "Cocina"
+  },
+  "EVENT_SUBCATEGORY": {
+    "FOOTBALL": "Fútbol",
+    "BASKET": "Baloncesto",
+    "TENNIS": "Ténis",
+    "PADEL": "Pádel",
+    "VOLLEYBALL": "Voley",
+    "CALL OF DUTY": "Call of Duty",
+    "EA SPORTS FC": "EA SPORTS FC",
+    "RAINBOW SIX SIEGE": "Rainbow Six Siege",
+    "VALORANT": "Valorant",
+    "LEAGUE OF LEGENDS": "League of Legends",
+    "CATAN": "Catán",
+    "MUS": "Mus",
+    "CARCASSONNE": "Carcassonne",
+    "ZOMBICIDE": "Zombicide",
+    "JUNGLE SPEED": "Jungle Speed",
+    "JAM SESSION": "Sesión de improvisación",
+    "CONFECTIONERY": "Repostería",
+    "ITALIAN": "Italiana",
+    "MEDITERRANEAN": "Mediterránea",
+    "HINDU": "Hindú"
+  },
+  "HOME":{
+    "INTRO": {
+      "PARAGRAPH_1": "¡Bienvenido a ConectaBarrio! Nuestra plataforma está diseñada para fomentar la colaboración ciudadana y mejorar la vida en el Barrio del Pilar.",
+      "PARAGRAPH_2": "En ConectaBarrio creemos en el poder de la comunidad. Aquí puedes mantenerte informado con las últimas noticias de tu zona y estar al tanto de todo lo que ocurre a tu alrededor.",
+      "PARAGRAPH_3": "¿Has encontrado un problema en tu barrio? Nuestra plataforma te permite crear quejas y denuncias públicas. Por ejemplo, si ves un bache en la carretera, puedes informar a otros usuarios para que tengan cuidado, así como también notificar a las autoridades para su pronta reparación.",
+      "PARAGRAPH_4": "Además, en ConectaBarrio, puedes crear y participar en eventos locales. Desde actividades deportivas hasta torneos de videojuegos, hay algo para todos. Únete a eventos existentes o crea el tuyo propio para conectar con personas con intereses similares.",
+      "PARAGRAPH_5": "También puedes unirte a grupos de interés como música, lectura y más. Estos grupos te permiten conectar con otros miembros de la comunidad que comparten tus pasiones, organizar encuentros y disfrutar de tus hobbies en compañía.",
+      "PARAGRAPH_6": "¡Únete hoy a ConectaBarrio y sé parte del cambio! Juntos podemos construir un barrio más unido, informado y activo."
+    }
   }
 }

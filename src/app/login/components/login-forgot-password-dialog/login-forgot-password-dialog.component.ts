@@ -23,8 +23,7 @@ export class LoginForgotPasswordDialogComponent {
   hide = true;
   disabled = false;
   returnUrl: string;
-  strongPasswordRegx: RegExp =
-    /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
+  strongPasswordRegx: RegExp = /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
 
   constructor(
     private creationDialog: MatDialog,
@@ -54,18 +53,9 @@ export class LoginForgotPasswordDialogComponent {
   createForm(): void {
     this.formData = this.formBuilder.group({
       userName: [null, [Validators.required]],
-      password: [
-        null,
-        [Validators.required, Validators.pattern(this.strongPasswordRegx)],
-      ],
-      repeatPassword: [null, [Validators.required]],
-      email: [
-        null,
-        [
-          Validators.required,
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
-        ],
-      ],
+      password: [null, [Validators.required, Validators.pattern(this.strongPasswordRegx)]],
+      repeatPassword: [null, [Validators.required]], 
+      email: [null, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]]
     });
     this.spinnerSvc.hide();
   }

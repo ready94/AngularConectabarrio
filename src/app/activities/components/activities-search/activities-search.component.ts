@@ -5,14 +5,13 @@ import { EventTypeModel } from '@activities/models/event-type.model';
 import { EventDTO } from '@activities/models/eventdto.model';
 import { ActivitiesService } from '@activities/services/activities.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { EventType } from '@angular/router';
 import { LoginDto } from '@login/models/loginDTO.model';
 import { AuthService } from '@shared/services/auth.service';
 import { ActivitiesNewFormComponent } from '../activities-new-form/activities-new-form.component';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-activities-search',
@@ -83,6 +82,7 @@ export class ActivitiesSearchComponent implements OnInit {
     this.activitySvc.GetAllAvailableEvents().subscribe({
       next: (res: ActivitiesModel[]) => {
         res.forEach((activity: ActivitiesModel) => {
+          debugger
           let newEvent: EventDTO = {
             idEvent: activity.idEvent,
             actualPerson: activity.actualPerson,

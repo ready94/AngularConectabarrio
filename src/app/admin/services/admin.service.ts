@@ -36,8 +36,8 @@ export class AdminService {
     return this.httpClient.post<boolean>(url, userModel);
   }
 
-  DeleteUser(userModel: UserModel): Observable<boolean>{
-    const url = this.url + `/deleteUser`;
+  DeleteUser(userModel: UserModel, idAdmin: number): Observable<boolean>{
+    const url = this.url + `/deleteUser/${idAdmin}`;
     return this.httpClient.post<boolean>(url, userModel);
   }
 
@@ -46,13 +46,13 @@ export class AdminService {
     return this.httpClient.get<ResponseResult<boolean>>(url);
   }
 
-  BlockUser(userModel: UserModel): Observable<boolean> {
-    const url = this.url + `/blockUser`;
+  BlockUser(userModel: UserModel, idAdmin: number): Observable<boolean> {
+    const url = this.url + `/blockUser/${idAdmin}`;
     return this.httpClient.post<boolean>(url, userModel);
   }
 
-  UnblockUser(userModel: UserModel): Observable<boolean> {
-    const url = this.url + `/unblockUser`;
+  UnblockUser(userModel: UserModel, idAdmin: number): Observable<boolean> {
+    const url = this.url + `/unblockUser/${idAdmin}`;
     return this.httpClient.post<boolean>(url, userModel);
   }
 

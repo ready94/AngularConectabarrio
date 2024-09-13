@@ -97,6 +97,7 @@ export class LoginDialogComponent implements OnInit {
 
       this.loginSvc.logIn(userData).subscribe({
         next: (result: ResponseResult<LoginDto>) => {
+          debugger
           this.spinnerSvc.hide();
           const res: LoginDto = result.result;
 
@@ -104,7 +105,7 @@ export class LoginDialogComponent implements OnInit {
             this.authSvc.SetSessionStorageToken(res);
             this.close(result.result);
           }else{
-            const msg: string = this.translateSvc.instant("LOGIN.ACTIONS.ERROR.WRONG_DATA");
+            const msg: string = this.translateSvc.instant(result.msg);
             this.msgSvc.ShowAlertError('', msg);
           }
         },

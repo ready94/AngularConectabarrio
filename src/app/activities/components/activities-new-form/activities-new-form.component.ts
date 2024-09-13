@@ -26,6 +26,7 @@ export class ActivitiesNewFormComponent {
   categories: EventCategoryModel[] = [];
   subcategories: EventSubcategoryModel[] = [];
   subCategoriesFiltered: EventSubcategoryModel[] = [];
+  activityToUpdate: ActivitiesModel;
 
   constructor(
     private creationDialog: MatDialog,
@@ -38,6 +39,8 @@ export class ActivitiesNewFormComponent {
     @Inject(MAT_DIALOG_DATA) public data
   ) {
     this.idUser = data.idUser;
+    if(data.activityToUpdate)
+      this.activityToUpdate = data.activityToUpdate;
     this.getEventTypes();
     this.getEventCategories();
     this.getEventSubCategories();
@@ -45,6 +48,8 @@ export class ActivitiesNewFormComponent {
 
   ngOnInit(): void {
     this.createForm();
+    if(this.activityToUpdate)
+      this.formData.patchValue(this.activityToUpdate);
   }
 
   createForm(): void {
@@ -89,26 +94,41 @@ export class ActivitiesNewFormComponent {
       let activity: ActivitiesModel = this.formData.value; 
       activity.creationUser = this.idUser;
       activity.idEvent = 0;
-
-      this.activitySvc.CreateEvent(activity).subscribe({
-        next: (res: boolean) => {
-          if (res === true) {
-            const msg: string = this.translateSvc.instant("SUCCESS.ACTIVITY_CREATED");
-            this.msgSvc.showAlertSuccess(msg);
-            this.dialogRef.close(true);
-          } else {
-            const msg: string = this.translateSvc.instant("ERROR.ACTIVITY_CREATION");
-            this.msgSvc.showAlertError(msg);
-          }
-        },
-      });
+      
+      if(this.activityToUpdate){
+        activity.idEvent = this.activityToUpdate.idEvent;
+        this.activitySvc.UpdateEvent(this.idUser, activity).subscribe({
+          next: (res: boolean) => {
+            if (res === true) {
+              const msg: string = this.translateSvc.instant("SUCCESS.ACTIVITY_CREATED");
+              this.msgSvc.showAlertSuccess(msg);
+              this.dialogRef.close(true);
+            } else {
+              const msg: string = this.translateSvc.instant("ERROR.ACTIVITY_CREATION");
+              this.msgSvc.showAlertError(msg);
+            }
+          },
+        });
+      }
+      else{
+        this.activitySvc.CreateEvent(activity).subscribe({
+          next: (res: boolean) => {
+            if (res === true) {
+              const msg: string = this.translateSvc.instant("SUCCESS.ACTIVITY_CREATED");
+              this.msgSvc.showAlertSuccess(msg);
+              this.dialogRef.close(true);
+            } else {
+              const msg: string = this.translateSvc.instant("ERROR.ACTIVITY_CREATION");
+              this.msgSvc.showAlertError(msg);
+            }
+          },
+        });
+      }
     }
   }
 
   selectCategory(idCat: number): void{
-    debugger
     this.subCategoriesFiltered  = [];
     this.subCategoriesFiltered = this.subcategories.filter(res => res.idEventCategory == idCat);
-    debugger
   }
 }

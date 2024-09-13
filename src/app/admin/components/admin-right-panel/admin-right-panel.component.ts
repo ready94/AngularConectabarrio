@@ -22,6 +22,10 @@ import { NewsFormComponent } from '@news/components/news-form/news-form.componen
 import { ComplaintFormComponent } from '@complaints/components/complaint-form/complaint-form.component';
 import { EnumComplaintType } from '@complaints/enums/complaint-type.enum';
 import { EnumComplaintPriority } from '@complaints/enums/complaint-priority.enum';
+import { TranslateService } from '@ngx-translate/core';
+import { NewsService } from '@news/services/news.service';
+import { MsgService } from '@shared/services/msg.service';
+import { ComplaintsService } from '@complaints/services/complaints.service';
 
 @Component({
   selector: 'app-admin-right-panel',
@@ -70,6 +74,10 @@ export class AdminRightPanelComponent implements OnChanges{
     private adminSvc: AdminService,
     private activitySvc: ActivitiesService,
     private authSvc: AuthService,
+    private translateSvc: TranslateService,
+    private newsSvc: NewsService,
+    private msgSvc: MsgService,
+    private complaintSvc: ComplaintsService
   ) {  
     if (this.authSvc.isAuthenticated()) {
     this.logged = true;
@@ -83,7 +91,6 @@ export class AdminRightPanelComponent implements OnChanges{
   }
 
   loadLists(option: AdminOptionModel) {
-    debugger
     switch (option.idOption) {
       case EnumAdminOptions.USERS:
         this.getAllUsers();
@@ -106,7 +113,6 @@ export class AdminRightPanelComponent implements OnChanges{
   getAllUsers(): void {
     this.adminSvc.GetAllUsers().subscribe({
       next: (res: UserModel[]) => {
-        debugger;
         this.users = res;
       },
       error: (err: string) => {},
@@ -121,9 +127,35 @@ export class AdminRightPanelComponent implements OnChanges{
       disableClose: true,
       data: { user: user, idAdmin: this.userLoggedIn.idUser}
     });
+
+    dialog.afterClosed().subscribe({
+      next: (res: boolean) => {
+        if(res)
+          this.getAllUsers();
+      }
+    })
+
   }
 
-  deleteUser(user: UserModel): void {
+  deleteUser(item: UserModel){
+    const msg: string = this.translateSvc.instant("CONFIRM.DELETE");
+    this.msgSvc.ShowAlertConfirm('', msg, () => {this.confirmDeleteUser(item);}, () => {});
+  }
+
+  confirmDeleteUser(item: UserModel){
+    this.adminSvc.DeleteUser(item, this.userLoggedIn.idUser).subscribe({
+      next: (res: boolean) => {
+        if(res){
+          const msg: string = this.translateSvc.instant("SUCCESS.DELETE");
+          this.msgSvc.showAlertSuccess(msg);
+          this.getAllUsers();
+        }else{
+          const msg: string = this.translateSvc.instant("SUCCESS.DELETE");
+          this.msgSvc.showAlertSuccess(msg);
+        }
+
+      }, error: (err: string) => {}
+    })
 
   }
 
@@ -135,14 +167,37 @@ export class AdminRightPanelComponent implements OnChanges{
       disableClose: true,
       data: { idAdmin: this.userLoggedIn.idUser}
     });
+
+    dialog.afterClosed().subscribe({
+      next: (res: boolean) => {
+        if(res)
+          this.getAllUsers();
+      }
+    })
   }
 
   blockUser(user: UserModel): void{
-
+    this.adminSvc.BlockUser(user, this.userLoggedIn.idUser).subscribe({
+      next: (res: boolean) => {
+        if(res){
+          const msg: string = this.translateSvc.instant("USER.BLOCKED");
+          this.msgSvc.showAlertSuccess(msg);
+          this.getAllUsers()
+        }
+      }
+    })
   }
 
   unblock(user: UserModel): void {
-
+    this.adminSvc.UnblockUser(user, this.userLoggedIn.idUser).subscribe({
+      next: (res: boolean) => {
+        if(res){
+          const msg: string = this.translateSvc.instant("USER.UNLOCKED");
+          this.msgSvc.showAlertSuccess(msg);
+          this.getAllUsers()
+        }
+      }
+    })
   }
 
   getAllNews(): void {
@@ -180,10 +235,39 @@ export class AdminRightPanelComponent implements OnChanges{
   }
 
   updateNew(updateNew: NewsModel): void {
+    const dialog = this.creationDialog.open(NewsFormComponent, {
+      width: '30%',
+      height: '62%',
+      autoFocus: false,
+      data: { idUser: this.userLoggedIn.idUser,  updateNew: updateNew},
+    });
 
+    dialog.afterClosed().subscribe({
+      next: (res: boolean) => {
+        if (res) this.getAllNews();
+      },
+    });
   }
 
-  deleteNew(deleteNew: NewsModel): void {
+  deleteNew(item: NewsModel){
+    const msg: string = this.translateSvc.instant("CONFIRM.DELETE");
+    this.msgSvc.ShowAlertConfirm('', msg, () => {this.confirmDeleteNew(item);}, () => {});
+  }
+
+  confirmDeleteNew(item: NewsModel){
+    this.newsSvc.DeleteNew(this.userLoggedIn.idUser, item.idNew).subscribe({
+      next: (res: boolean) => {
+        if(res){
+          const msg: string = this.translateSvc.instant("SUCCESS.DELETE");
+          this.msgSvc.showAlertSuccess(msg);
+          this.getAllNews();
+        }else{
+          const msg: string = this.translateSvc.instant("SUCCESS.DELETE");
+          this.msgSvc.showAlertSuccess(msg);
+        }
+
+      }, error: (err: string) => {}
+    })
 
   }
 
@@ -215,21 +299,18 @@ export class AdminRightPanelComponent implements OnChanges{
               act.eventType = "ACTIVITY.ACTTIVITY_TYPE.TOURNAMENT";
               break;  
           }
-          debugger;
 
           if(this.eventSubcategory){
             act.eventSubcategory = this.eventSubcategory.find(ev => ev.idEventSubCategory == act.idEventSubCategory).eventSubCategory
             let idCategory = this.eventSubcategory.find(ev => ev.idEventSubCategory == act.idEventSubCategory).idEventCategory;
             
-            if(this.eventCategory){
-              
+            if(this.eventCategory){              
               act.eventCategory = this.eventCategory.find(ev => ev.idEventCategory == idCategory).eventCategory;
             }
           }
 
         })
         this.activities = res;
-        debugger
       },
       error: (err: string) => {},
     });
@@ -250,12 +331,40 @@ export class AdminRightPanelComponent implements OnChanges{
     });
   }
 
-  updateActivity(activity: ActivitiesModel): void {
+  updateEvent(activity: ActivitiesModel) {
+    const dialog = this.creationDialog.open(ActivitiesNewFormComponent, {
+      width: '30%',
+      height: '70%',
+      autoFocus: false,
+      data: { idUser: this.userLoggedIn.idUser, activityToUpdate: activity },
+    });
 
+    dialog.afterClosed().subscribe({
+      next: (res: boolean) => {
+        this.getAllActivities();
+      },
+    });
   }
 
-  deleteActivity(activity: ActivitiesModel): void {
+  deleteEvent(item: ActivitiesModel){
+    const msg: string = this.translateSvc.instant("CONFIRM.DELETE");
+    this.msgSvc.ShowAlertConfirm('', msg, () => {this.confirmDelete(item);}, () => {});
+  }
 
+  confirmDelete(item: ActivitiesModel){
+    this.activitySvc.DeleteEvent(item.idEvent, this.userLoggedIn.idUser).subscribe({
+      next: (res: boolean) => {
+        if(res){
+          const msg: string = this.translateSvc.instant("SUCCESS.DELETE");
+          this.msgSvc.showAlertSuccess(msg);
+          this.getAllActivities();
+        }else{
+          const msg: string = this.translateSvc.instant("SUCCESS.DELETE");
+          this.msgSvc.showAlertSuccess(msg);
+        }
+
+      }, error: (err: string) => {}
+    })
   }
 
   getAllComplaints(): void {
@@ -263,10 +372,9 @@ export class AdminRightPanelComponent implements OnChanges{
       next: (res: ComplaintModel[]) => {
         res.forEach(complaint => {
           complaint.complaintPriority = this.priorities.find(priority => priority.key == complaint.idPriority).value;
-          complaint.complaintType = this.types.find(type => type.key == complaint.idPriority).value;
+          complaint.complaintType = this.types.find(type => type.key == complaint.idComplaintType).value;
         })
         this.complaints = res;
-        debugger
       },
       error: (err: string) => {},
     });
@@ -288,12 +396,43 @@ export class AdminRightPanelComponent implements OnChanges{
     });
   }
 
-  updateComplaint(complaint: ComplaintModel): void {
+  updateComplaint(item: ComplaintModel) {
+    const dialog = this.creationDialog.open(ComplaintFormComponent, {
+      width: '30%',
+      height: '63%',
+      autoFocus: false,
+      data: { idUser: this.userLoggedIn.idUser, complaintToUpdate: item },
+    });
 
+    dialog.afterClosed().subscribe({
+      next: (res: boolean) => {
+        if(res)
+          this.getAllComplaints();
+      },
+    });
+  }
+    
+  deleteComplaint(item: ComplaintModel){
+    const msg: string = this.translateSvc.instant("CONFIRM.DELETE");
+    this.msgSvc.ShowAlertConfirm('', msg, () => {this.confirmDeleteComplaint(item);}, () => {});
   }
 
-  deleteComplaint(complaint: ComplaintModel): void {
+  confirmDeleteComplaint(item: ComplaintModel){
+    this.complaintSvc.DeleteComplaint(this.userLoggedIn.idUser, item.idComplaint).subscribe({
+      next: (res: boolean) => {
+        if(res){
+          const msg: string = this.translateSvc.instant("SUCCESS.DELETE");
+          this.msgSvc.showAlertSuccess(msg);
+          this.getAllComplaints();
+        }else{
+          const msg: string = this.translateSvc.instant("SUCCESS.DELETE");
+          this.msgSvc.showAlertSuccess(msg);
+        }
+
+      }, error: (err: string) => {}
+    })
 
   }
+    
 
 }

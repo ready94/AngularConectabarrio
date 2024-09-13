@@ -1,13 +1,16 @@
-<div class="news-container" >
-    
-    @if (userLoggedIn !== null) {
-        <button mat-raised-button class="btn-theme mx-2 float-end" (click)="createNew()">{{ "ACTIONS.CREATE" | translate }}</button>
-    }
+<div class="news-container"> 
 
     <div class="cards-container">
-
-        <h2>{{ "NEWS.GOOGLE" | translate }}</h2>
-
+       <div class="news-title"> <h2>{{ "NEWS.GOOGLE" | translate }}</h2> </div>
+        
+       @if(rowsGoogle.length == 0){
+        <mat-card class="card-no-elements justify-content-center" >
+            <mat-card-content>                
+                <p>{{"NEWS.NO_NEWS" | translate}}</p>
+            </mat-card-content>
+        </mat-card>
+       }
+        @else{
         <div class="row-cards" *ngFor="let row of rowsGoogle">
             <div class="column-cards" *ngFor="let item of row">
                 <mat-card class="card" >
@@ -21,27 +24,44 @@
                 </mat-card>   
             </div>
         </div>
-    </div>
-    
-    <div class="cards-container">
-        <h2>{{ "NEWS.USERS" | translate }}</h2>
-        <div class="row-cards" *ngFor="let row of rowsNews">
-            <div class="column-cards" *ngFor="let item of row">
-                <mat-card class="card" > 
-                    <mat-card-header>
-                        <h2>{{item.name}}</h2>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <p>{{item.description}}</p>
-                        <a (click)="openDescription(item)">{{"GENERAL.READ_MORE"| translate}}</a>  
-                    </mat-card-content>
-                    <mat-card-actions>
-                        <button mat-raised-button class="btn-theme mx-2 float-end" (click)="updateNew(item)">{{ "ACTIONS.MODIFY" | translate }}</button>
-                        <button mat-raised-button class="btn-theme mx-2 float-end" (click)="deleteNew(item)">{{ "ACTIONS.DELETE" | translate }}</button>
-                    </mat-card-actions>
-                </mat-card>   
-            </div>
-        </div>
+    }
     </div>
 
+  
+    <div class="cards-container">
+        <div class="news-title"> <h2>{{ "NEWS.USERS" | translate }}</h2> </div>
+
+        @if (userLoggedIn !== null) {
+            <button mat-raised-button class="btn-theme mx-2 float-end" (click)="createNew()">{{ "ACTIONS.CREATE" | translate }}</button>
+        }
+
+        @if(rowsNews.length == 0){
+            <mat-card class="card-no-elements justify-content-center" >
+                <mat-card-content>                
+                    <p>{{"NEWS.NO_NEWS" | translate}}</p>
+                </mat-card-content>
+            </mat-card>
+        }
+        @else{
+            <div class="row-cards" *ngFor="let row of rowsNews">
+                <div class="column-cards" *ngFor="let item of row">
+                    <mat-card class="card" *ngIf="item.active"> 
+                        <mat-card-header>
+                            <h2>{{item.name}}</h2>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <p>{{item.description}}</p>
+                            <a (click)="openDescription(item)">{{"GENERAL.READ_MORE"| translate}}</a>  
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <button mat-raised-button class="btn-theme mx-2 float-end" (click)="updateNew(item)">{{ "ACTIONS.MODIFY" | translate }}</button>
+                            <button mat-raised-button class="btn-theme mx-2 float-end" (click)="deleteNew(item)">{{ "ACTIONS.DELETE" | translate }}</button>
+                        </mat-card-actions>
+                    </mat-card>   
+                </div>
+            </div>
+        }
+    </div>
+   
+   
 </div>

@@ -18,8 +18,8 @@ export class NewsService {
     return this.httpClient.post<boolean>(url, newModel);
   }
 
-  UpdateNew(idUser: number, newModel: NewsModel): Observable<boolean> {
-    const url = this.url + `/updateNew/${idUser}`;
+  UpdateNew(idUser: number, newModel: NewsModel, idNew: number): Observable<boolean> {
+    const url = this.url + `/updateNew/${idUser}/${idNew}`;
     return this.httpClient.post<boolean>(url, newModel);
   }
 

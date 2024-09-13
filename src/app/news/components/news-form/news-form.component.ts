@@ -3,6 +3,7 @@ import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { MatDateFormats } from '@angular/material/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { EnumNewsCategory } from '@news/enums/news-category.enum';
+import { NewsModel } from '@news/models/news.model';
 import { NewsService } from '@news/services/news.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MsgService } from '@shared/services/msg.service';
@@ -37,6 +38,8 @@ export class NewsFormComponent {
     { key: EnumNewsCategory.SOCIAL, value: 'NEWS.CATEGORY.SOCIAL' }
   ];
 
+  newToUpdate: NewsModel;
+
   constructor(
     private creationDialog: MatDialog,
     private dialogRef: MatDialogRef<NewsFormComponent>,
@@ -48,10 +51,17 @@ export class NewsFormComponent {
     @Inject(MAT_DIALOG_DATA) public data
   ) {
     this.idUser = data.idUser;
+    if(data.updateNew)
+      this.newToUpdate = data.updateNew;
+    
   }
+
   ngOnInit(): void {
     this.spinnerSvc.show();
     this.createForm();
+    if(this.newToUpdate)
+      this.formData.patchValue(this.newToUpdate);
+    
   }
 
   createForm(): void {
@@ -67,16 +77,35 @@ export class NewsFormComponent {
 
   register(): void {
     if (this.formData.valid) {
+
+      if(this.newToUpdate)
+        {
+        this.newsSvc.UpdateNew(this.idUser, this.formData.value, this.newToUpdate.idNew).subscribe({
+          next: (res: boolean) => {
+            if (res === true) {
+              const msg: string = this.translateSvc.instant("SUCCESS.NEW_UPDATED")
+              this.msgSvc.showAlertSuccess(msg);
+              this.dialogRef.close(true);
+            } else {
+              this.msgSvc.showAlertError("ERROR");
+            }
+          },
+        });
+      }
+      else
+      {
       this.newsSvc.CreateNew(this.idUser, this.formData.value).subscribe({
         next: (res: boolean) => {
           if (res === true) {
-            this.msgSvc.showAlertSuccess("OK");
+            const msg: string = this.translateSvc.instant("SUCCESS.NEW_CREATED")
+              this.msgSvc.showAlertSuccess(msg);
             this.dialogRef.close(true);
           } else {
             this.msgSvc.showAlertError("ERROR");
           }
         },
       });
+    }
     }
   }
 }

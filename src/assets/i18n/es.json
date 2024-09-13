@@ -68,8 +68,7 @@
     "NEW_CREATED": "Noticia creada correctamente",
     "NEW_UPDATED": "Noticia modificada correctamente",
     "COMPLAINT_CREATED": "Denuncia creada correctamente",
-    "COPMLAINT_UPDATED": "Denuncia modificada correctamente"
-
+    "COMPLAINT_UPDATED": "Denuncia modificada correctamente"
   },
   "WARNING": {
     "WARNING": "Advertencia",
@@ -87,7 +86,11 @@
     "NEW_CREATION": "Ha ocurrido un error al crear la noticia",
     "NEW_UPDATE": "Ha ocurrido un error al modificar la noticia",
     "COMPLAINT_CREATION": "Ha ocurrido un error al crear la denuncia",
-    "COPMLAINT_UPDATE": "Ha ocurrido un error al modificar la denuncia"
+    "COPMLAINT_UPDATE": "Ha ocurrido un error al modificar la denuncia",
+    "NEW_DELETE": "Ha ocurrido un error al eliminar la noticia",
+    "COMPLAINT_DELETE": "Ha ocurrido un error al eliminar la denuncia",
+    "ACTIVITY_DELETE": "Ha ocurrido un error al eliminar la actividad",
+    "USER_UPDATE": "Ha ocurrido un error al modificar al usuario"
   },
   "CONFIRM": {
     "DISCARD_CHANGES": "¿Está seguro/a de que desea descartar los cambios?",
@@ -114,7 +117,12 @@
     "ROLE": {
       "ADMINISTRATOR": "Administrador",
       "USER": "Usuario"
-    }
+    },
+    "BLOCKED": "Usuario bloqueado",
+    "UNLOCK": "Desbloquear usuario",
+    "BLOCK": "Bloquear usuario",
+    "UNLOCKED": "Usuario desbloqueado"
+
   },
   "GENERAL": {
     "READ_MORE": "Leer más",
@@ -149,7 +157,8 @@
       "SOCIAL": "Social"
     }, 
     "GOOGLE": "Noticias de Google",
-    "USERS": "Noticias de usuarios"
+    "USERS": "Noticias de usuarios", 
+    "NO_NEWS": "Sin resultados"
   },
   "COMPLAINTS": {
     "TITLE": "Título",

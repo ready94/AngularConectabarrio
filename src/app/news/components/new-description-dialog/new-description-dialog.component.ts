@@ -15,7 +15,6 @@ export class NewDescriptionDialogComponent {
     private dialogRef: MatDialogRef<NewDescriptionDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data
   ){
-    debugger
     if(data) this.item = data.item;
   }
 

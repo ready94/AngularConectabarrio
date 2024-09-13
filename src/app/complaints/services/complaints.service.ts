@@ -19,8 +19,8 @@ export class ComplaintsService {
     return this.httpClient.post<boolean>(url, complaint);
   }
 
-  UpdateComplaint(idUser: number, complaint: ComplaintModel): Observable<boolean> {
-    const url = this.url + `/updateComplaint/${idUser}`;
+  UpdateComplaint(idUser: number, complaint: ComplaintModel, idComplaint: number): Observable<boolean> {
+    const url = this.url + `/updateComplaint/${idUser}/${idComplaint}`;
     return this.httpClient.post<boolean>(url, complaint);
   }
 

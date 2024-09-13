@@ -48,7 +48,13 @@
             <ng-container matColumnDef="actions">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{ "ACTIONS.ACTIONS" | translate}} </mat-header-cell>
                 <mat-cell *matCellDef="let element"> 
-
+                  <button 
+                    *ngIf="element.isTheCreationUser" 
+                    class="btn btn-primary" 
+                    (click)="updateEvent(element)">
+                    {{ "ACTIONS.MODIFY" | translate}}
+                  </button>
+                  
                     @if(element.alreadyIn ){
                         <button *ngIf="!element.isTheCreationUser" class="btn btn-primary" (click)="exit(element)">{{ "ACTIVITY.GET_OUT" | translate}}</button>
  
@@ -67,6 +73,6 @@
     </div>
 
     @if (userLoggedIn !== null) {
-        <button mat-raised-button class="btn-theme mx-2 float-end" (click)="createEvent()">{{ "ACTIONS.CREATE" | translate }}</button>
+        <button mat-raised-button class="btn-theme mx-2 mt-5 float-end" (click)="createEvent()">{{ "ACTIONS.CREATE" | translate }}</button>
     }
 </div>

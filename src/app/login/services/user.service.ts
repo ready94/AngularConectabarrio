@@ -21,8 +21,8 @@ export class UserService {
     return this.httpClient.post<ResponseResult<boolean>>(url, user);
   }
 
-  UpdateUser(idUser: number, user: UserModel): Observable<boolean> {
-    const url = this.url + `/updateUser/${idUser}`;
+  UpdateUser(idAdmin: number, user: UserModel, idUser: number): Observable<boolean> {
+    const url = this.url + `/updateUser/${idAdmin}/${idUser}`;
     return this.httpClient.post<boolean>(url, user);
   }
 

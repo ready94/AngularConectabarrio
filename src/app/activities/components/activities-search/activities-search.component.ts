@@ -12,6 +12,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { LoginDto } from '@login/models/loginDTO.model';
 import { AuthService } from '@shared/services/auth.service';
 import { ActivitiesNewFormComponent } from '../activities-new-form/activities-new-form.component';
+import { TranslateService } from '@ngx-translate/core';
+import { MsgService } from '@shared/services/msg.service';
 
 @Component({
   selector: 'app-activities-search',
@@ -47,6 +49,8 @@ export class ActivitiesSearchComponent implements OnInit {
     private activitySvc: ActivitiesService,
     private authSvc: AuthService,
     private creationDialog: MatDialog,
+    private translateSvc: TranslateService,
+    private msgSvc: MsgService,
   ) {
     if (this.authSvc.isAuthenticated()) {
       this.logged = true;
@@ -82,7 +86,6 @@ export class ActivitiesSearchComponent implements OnInit {
     this.activitySvc.GetAllAvailableEvents().subscribe({
       next: (res: ActivitiesModel[]) => {
         res.forEach((activity: ActivitiesModel) => {
-          debugger
           let newEvent: EventDTO = {
             idEvent: activity.idEvent,
             actualPerson: activity.actualPerson,
@@ -166,6 +169,21 @@ export class ActivitiesSearchComponent implements OnInit {
       height: '70%',
       autoFocus: false,
       data: { idUser: this.userLoggedIn.idUser },
+    });
+
+    dialog.afterClosed().subscribe({
+      next: (res: boolean) => {
+        this.getActivities();
+      },
+    });
+  }
+
+  updateEvent(activity: ActivitiesModel) {
+    const dialog = this.creationDialog.open(ActivitiesNewFormComponent, {
+      width: '30%',
+      height: '70%',
+      autoFocus: false,
+      data: { idUser: this.userLoggedIn.idUser, activityToUpdate: activity },
     });
 
     dialog.afterClosed().subscribe({

@@ -1,13 +1,11 @@
-<div class="news-container" >
+<div class="complaints-container" >
     
-    @if (userLoggedIn !== null) {
-        <button mat-raised-button class="btn-theme mx-2 float-end" (click)="createComplaint()">{{ "ACTIONS.CREATE" | translate }}</button>
-    }
-
     <div  class="cards-container">
 
-        <h2>{{ "COMPLAINTS.MY_COMPLAINTS" | translate }}</h2>
-
+        <div class="complaints-title"><h2>{{ "COMPLAINTS.MY_COMPLAINTS" | translate }}</h2> </div>
+        @if (userLoggedIn !== null) {
+            <button mat-raised-button class="btn-theme mx-2 float-end" (click)="createComplaint()">{{ "ACTIONS.CREATE" | translate }}</button>
+        }
         <div class="row-cards" *ngFor="let row of rowsMyComplaints">
             <div class="column-cards" *ngFor="let item of row">
                 <mat-card class="card" >
@@ -29,8 +27,8 @@
     
     <div class="cards-container">
 
-        <h2>{{ "COMPLAINTS.USERS_COMPLAINTS" | translate }}</h2>
-
+        <div class="complaints-title"><h2>{{ "COMPLAINTS.USERS_COMPLAINTS" | translate }}</h2></div>
+        
         <div class="row-cards" *ngFor="let row of rowsComplaints">
             <div class="column-cards" *ngFor="let item of row">
                 <mat-card class="card" > 

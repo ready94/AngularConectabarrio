@@ -15,7 +15,6 @@ export class ComplaintDescriptionDialogComponent {
     private dialogRef: MatDialogRef<ComplaintDescriptionDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data
   ){
-    debugger
     if(data) this.item = data.item;
   }
 

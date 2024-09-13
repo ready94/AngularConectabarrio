@@ -23,7 +23,6 @@ export class AdminLeftPanelComponent {
     this.adminSvc.GetAdminOptions().subscribe({
       next: (res: AdminOptionModel[]) => {
         this.options = res;
-        debugger
       }, error: (err: string) => {}
     });
   }

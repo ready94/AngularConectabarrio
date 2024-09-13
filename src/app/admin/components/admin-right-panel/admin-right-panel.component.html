@@ -6,8 +6,12 @@
                 <div class="item-content">
                   {{ user.name }} {{ user.surname}} - ID: {{ user.idUser}}
                   <div class="item-actions">
+                    @if(user.idUser !== this.userLoggedIn.idUser){
+                      <button *ngIf="user.isBlocked" (click)="unblock(user)">{{ "USER.UNLOCK" | translate }}</button>
+                      <button *ngIf="!user.isBlocked" (click)="blockUser(user)">{{ "USER.BLOCK" | translate }}</button>
+                    }
                     <button (click)="updateUser(user)">{{ "ACTIONS.MODIFY" | translate }}</button>
-                    <button (click)="deleteUser(user)">{{ "ACTIONS.DELETE" | translate }}</button>
+                    <button *ngIf="user.idUser !== this.userLoggedIn.idUser" (click)="deleteUser(user)">{{ "ACTIONS.DELETE" | translate }}</button>
                   </div>
                 </div>
                 
@@ -33,8 +37,8 @@
                 ID: {{ activity.idEvent}} - {{ "ACTIVITY.TYPE" | translate }}: {{ activity.eventType | translate}} - 
                 {{ "ACTIVITY.CATEGORY" | translate }}: {{ activity.eventCategory | translate}} - {{ "ACTIVITY.SUBCATEGORY" | translate }}: {{ activity.eventSubcategory | translate}}
                 <div class="item-actions">
-                  <button (click)="updateActivity(activity)">{{ "ACTIONS.MODIFY" | translate }}</button>
-                  <button (click)="deleteActivity(activity)">{{ "ACTIONS.DELETE" | translate }}</button>
+                  <button (click)="updateEvent(activity)">{{ "ACTIONS.MODIFY" | translate }}</button>
+                  <button (click)="deleteEvent(activity)">{{ "ACTIONS.DELETE" | translate }}</button>
                 </div>
               </div>
             </div>

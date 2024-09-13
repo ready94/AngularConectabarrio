@@ -3,6 +3,8 @@ import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { EnumComplaintPriority } from '@complaints/enums/complaint-priority.enum';
 import { EnumComplaintType } from '@complaints/enums/complaint-type.enum';
+import { ComplaintModel } from '@complaints/models/complaint.model';
+import { ComplaintDTO } from '@complaints/models/complaintDTO.model';
 import { ComplaintsService } from '@complaints/services/complaints.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MsgService } from '@shared/services/msg.service';
@@ -33,6 +35,8 @@ export class ComplaintFormComponent {
     { key: EnumComplaintPriority.URGENT, value: 'COMPLAINTS.TYPE_PRIORITY.URGENT' }
   ]
 
+  complaintToUpdate: ComplaintModel;
+
   constructor(
     private creationDialog: MatDialog,
     private dialogRef: MatDialogRef<ComplaintFormComponent>,
@@ -44,10 +48,14 @@ export class ComplaintFormComponent {
     @Inject(MAT_DIALOG_DATA) public data
   ) {
     this.idUser = data.idUser;
+    if(data.complaintToUpdate)
+      this.complaintToUpdate = data.complaintToUpdate;
   }
   ngOnInit(): void {
     this.spinnerSvc.show();
     this.createForm();
+    if(this.complaintToUpdate)
+      this.formData.patchValue(this.complaintToUpdate);
   }
 
   createForm(): void {
@@ -62,18 +70,34 @@ export class ComplaintFormComponent {
 
   register(): void {
     if (this.formData.valid) {
-      this.complaintSvc.CreateComplaint(this.idUser, this.formData.value).subscribe({
-        next: (res: boolean) => {
-          if (res === true) {
-            const msg: string = this.translateSvc.instant("SUCCESS.COMPLAINT_CREATED");
-            this.msgSvc.showAlertSuccess(msg);
-            this.dialogRef.close(true);
-          } else {
-            const msg: string = this.translateSvc.instant("ERROR.COMPLAINT_CREATION");
-            this.msgSvc.showAlertError(msg);
-          }
-        },
-      });
+      if(this.complaintToUpdate){
+        this.complaintSvc.UpdateComplaint(this.idUser, this.formData.value, this.complaintToUpdate.idComplaint).subscribe({
+          next: (res: boolean) => {
+            if (res === true) {
+              const msg: string = this.translateSvc.instant("SUCCESS.COMPLAINT_UPDATED");
+              this.msgSvc.showAlertSuccess(msg);
+              this.dialogRef.close(true);
+            } else {
+              const msg: string = this.translateSvc.instant("ERROR.COPMLAINT_UPDATE");
+              this.msgSvc.showAlertError(msg);
+            }
+          },
+        });
+      }
+      else {
+          this.complaintSvc.CreateComplaint(this.idUser, this.formData.value).subscribe({
+          next: (res: boolean) => {
+            if (res === true) {
+              const msg: string = this.translateSvc.instant("SUCCESS.COMPLAINT_CREATED");
+              this.msgSvc.showAlertSuccess(msg);
+              this.dialogRef.close(true);
+            } else {
+              const msg: string = this.translateSvc.instant("ERROR.COMPLAINT_CREATION");
+              this.msgSvc.showAlertError(msg);
+            }
+          },
+        });
+      }
     }
   }
 }

@@ -40,8 +40,8 @@ export class ActivitiesService {
    }
 
    public DeleteEvent(idEvent: number, idUser: number): Observable<boolean> {
-    const url = this.url + `/deleteEventByIdEvent/${idEvent}/${idUser}`;
-    return this.httpClient.delete<boolean>(url);
+    const url = this.url + `/deleteEventByIdEvent/${idUser}`;
+    return this.httpClient.post<boolean>(url, idEvent);
    }
 
    public UpdateNumberOfPlayers(idUser: number, activity: ActivitiesModel): Observable<boolean> {
